@@ -114,8 +114,10 @@
         <div class="w-[80rem] m-auto flex flex-wrap justify-center items-center gap-8">
             @foreach ($partners as $partner)
                 <div class="mt-4 bg-gray-200 w-[243px] h-[105px] flex justify-center items-center rounded-md">
-                    <img src="{{ asset('storage/' . $partner->logo) }}" alt={{ $partner->name }}
-                        class="object-contain w-[180px] h-[100px] p-2" />
+                    <a href="{{ $partner->website }}" target="_blank">
+                        <img src="{{ asset('storage/' . $partner->logo) }}" alt={{ $partner->name }}
+                            class="object-contain w-[180px] h-[100px] p-2" />
+                    </a>
                 </div>
             @endforeach
         </div>
@@ -171,7 +173,7 @@
     <!-- Footer -->
     <footer class="mt-4 bg-white border-t-2 border-gray-200">
         <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-8 mx-auto">
-            <div class="text-lg font-bold">NaraiCoder Org {{ date('Y') }}</div>
+            <div class="text-lg font-bold">{{ config('app.name') }} {{ date('Y') }}</div>
             <div>
                 <ul class="flex flex-wrap gap-x-8">
                     <li>
