@@ -88,7 +88,7 @@ class PartnerController extends Controller
                     return;
                 }
 
-                if (file_exists(storage_path('app/public/' . $partner->logo))) {
+                if (isset($partner->logo) && file_exists(storage_path('app/public/' . $partner->logo))) {
                     unlink(storage_path('app/public/' . $partner->logo));
                 }
 

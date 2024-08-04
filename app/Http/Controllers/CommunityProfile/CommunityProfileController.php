@@ -51,7 +51,7 @@ class CommunityProfileController extends Controller
                     return;
                 }
 
-                if (file_exists(storage_path('app/public/' . $communityProfile->logo))) {
+                if (isset($communityProfile->logo) && file_exists(storage_path('app/public/' . $communityProfile->logo))) {
                     unlink(storage_path('app/public/' . $communityProfile->logo));
                 }
 

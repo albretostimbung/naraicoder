@@ -36,10 +36,10 @@
             {{ $slot }}
         </main>
     </div>
-    <script src="https://cdn.ckeditor.com/4.22.0/standard/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/4.22.0/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('content');
-      </script>
+      </script> --}}
 </body>
 
 </html>

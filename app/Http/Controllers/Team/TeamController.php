@@ -88,7 +88,7 @@ class TeamController extends Controller
                     return;
                 }
 
-                if (file_exists(storage_path('app/public/' . $team->avatar))) {
+                if (isset($team->avatar) && file_exists(storage_path('app/public/' . $team->avatar))) {
                     unlink(storage_path('app/public/' . $team->avatar));
                 }
 

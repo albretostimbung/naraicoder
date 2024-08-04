@@ -10,4 +10,9 @@ class Event extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function event_images()
+    {
+        return $this->hasMany(EventImage::class);
+    }
 }

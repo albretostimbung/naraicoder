@@ -5,6 +5,7 @@ use App\Http\Controllers\Partner\PartnerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityProfile\CommunityProfileController;
+use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Team\TeamController;
 
 Route::get('/', function () {
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('partners', PartnerController::class);
         Route::resource('teams', TeamController::class);
         Route::resource('articles', ArticleController::class);
+        Route::resource('events', EventController::class);
     });
 });
 

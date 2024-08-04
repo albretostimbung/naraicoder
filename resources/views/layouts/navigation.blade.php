@@ -22,19 +22,23 @@
 
                     @role('admin')
                         <x-nav-link :href="route('admin.community-profiles.index')" :active="request()->routeIs('admin.community-profiles.*')">
-                            {{ __('Manage Community Profiles') }}
+                            {{ __('Community Profiles') }}
                         </x-nav-link>
 
                         <x-nav-link :href="route('admin.partners.index')" :active="request()->routeIs('admin.partners.*')">
-                            {{ __('Manage Partners') }}
+                            {{ __('Partners') }}
                         </x-nav-link>
 
                         <x-nav-link :href="route('admin.teams.index')" :active="request()->routeIs('admin.teams.*')">
-                            {{ __('Manage Teams') }}
+                            {{ __('Teams') }}
                         </x-nav-link>
 
                         <x-nav-link :href="route('admin.articles.index')" :active="request()->routeIs('admin.articles.*')">
-                            {{ __('Manage Articles') }}
+                            {{ __('Articles') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('admin.events.index')" :active="request()->routeIs('admin.events.*')">
+                            {{ __('Events') }}
                         </x-nav-link>
                     @endrole
                 </div>

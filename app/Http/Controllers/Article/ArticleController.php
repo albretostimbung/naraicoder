@@ -97,7 +97,7 @@ class ArticleController extends Controller
                     return;
                 }
 
-                if (file_exists(storage_path('app/public/' . $article->image))) {
+                if (isset($article->image) && file_exists(storage_path('app/public/' . $article->image))) {
                     unlink(storage_path('app/public/' . $article->image));
                 }
 

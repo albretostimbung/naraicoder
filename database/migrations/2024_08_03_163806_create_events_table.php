@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->nullable();
             $table->string('title');
+            $table->string('email')->nullable();
             $table->string('description')->nullable();
             $table->string('speaker');
             $table->boolean('is_online');
