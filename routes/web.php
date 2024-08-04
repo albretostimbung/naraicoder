@@ -4,6 +4,7 @@ use App\Http\Controllers\Partner\PartnerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityProfile\CommunityProfileController;
+use App\Http\Controllers\Team\TeamController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function () {
         Route::resource('community-profiles', CommunityProfileController::class);
         Route::resource('partners', PartnerController::class);
+        Route::resource('teams', TeamController::class);
     });
 });
 
