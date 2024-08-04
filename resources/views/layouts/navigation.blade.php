@@ -32,6 +32,10 @@
                         <x-nav-link :href="route('admin.teams.index')" :active="request()->routeIs('admin.teams.*')">
                             {{ __('Manage Teams') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('admin.articles.index')" :active="request()->routeIs('admin.articles.*')">
+                            {{ __('Manage Articles') }}
+                        </x-nav-link>
                     @endrole
                 </div>
             </div>

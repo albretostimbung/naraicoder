@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Partner\PartnerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('community-profiles', CommunityProfileController::class);
         Route::resource('partners', PartnerController::class);
         Route::resource('teams', TeamController::class);
+        Route::resource('articles', ArticleController::class);
     });
 });
 
