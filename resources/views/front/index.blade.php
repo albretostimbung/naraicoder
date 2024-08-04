@@ -1,313 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ config('app.name') }}</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    @vite(['resources/js/app.js'])
     <style>
-        body {
-            font-family: sans-serif;
-            margin: 0;
-            padding: 0;
+        .owl-dot {
+            background: #1977F3;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
         }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+
+        .owl-dot.active {
+            background: #ffffff;
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .header .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .header .nav {
-            display: flex;
-            gap: 20px;
-        }
-        .header .nav a {
-            text-decoration: none;
-            color: #333;
-        }
-        .hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px;
-        }
-        .hero .text {
-            flex: 1;
-        }
-        .hero .text h1 {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .hero .text p {
-            font-size: 18px;
-            line-height: 1.5;
-        }
-        .hero .image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .hero .image img {
-            max-width: 100%;
-            height: auto;
-        }
-        .partners {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 40px;
-            gap: 20px;
-        }
-        .partners .partner {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            background-color: #f0f0f0;
-        }
-        .partners .partner img {
-            max-width: 100%;
-            height: auto;
-        }
-        .event {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px;
-        }
-        .event h2 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .event .video {
-            position: relative;
-            width: 600px;
-            height: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .event .video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .event .video .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.5);
+
+        .owl-nav button {
+            background: #1977F3;
+            border: none;
             color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
         }
-        .blog {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 40px;
-            gap: 20px;
+
+        .owl-nav button.owl-prev {
+            left: 10px;
+            font-size: 16px;
         }
-        .blog .post {
-            display: flex;
-            flex-direction: column;
-            width: 300px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .blog .post .image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .blog .post .content {
-            padding: 20px;
-        }
-        .blog .post .content h3 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .blog .post .content p {
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        .blog .post .content a {
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
-        }
-        .footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .footer .social {
-            display: flex;
-            gap: 10px;
-        }
-        .footer .social a {
-            text-decoration: none;
-            color: #333;
+
+        .owl-nav button.owl-next {
+            right: 10px;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                iNaraiCoder
-            </div>
-            <div class="nav">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-        <div class="hero">
-            <div class="text">
-                <h1>Bertumbuh dengan kolaborasi, Menuju visi "Bersinergi, Berkolaborasi dan Berinovasi"</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, aperiam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, aperiam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, aperiam.</p>
-                <button>Bergabung</button>
-            </div>
-            <div class="image">
-                <img src="https://i.imgur.com/h37M4j9.png" alt="Hero Image">
-            </div>
-        </div>
-        <div class="partners">
-            <div class="partner">
-                <img src="https://i.imgur.com/B01g50G.png" alt="Partner 1">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/fJ59D7W.png" alt="Partner 2">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/V3aQ0eS.png" alt="Partner 3">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/Xv4O0eS.png" alt="Partner 4">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/4yD11jZ.png" alt="Partner 5">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/i1786q1.png" alt="Partner 6">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/H0lK9zF.png" alt="Partner 7">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/06uU2dG.png" alt="Partner 8">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/5u6C89W.png" alt="Partner 9">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/6X5d68W.png" alt="Partner 10">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/J1t0X3v.png" alt="Partner 11">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/z36wC8s.png" alt="Partner 12">
-            </div>
-            <div class="partner">
-                <img src="https://i.imgur.com/c2J2L6L.png" alt="Partner 13">
+    <!-- Navbar -->
+    <nav class="fixed top-0 z-20 w-full bg-white border-gray-200 start-0">
+        <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <image
+                    src="{{ App\Models\CommunityProfile::first()->logo ? asset('storage/' . App\Models\CommunityProfile::first()->logo) : asset('assets/images/logo.png') }}"
+                    class="w-[249px] h-[84px]" alt="Logo" />
+            </a>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul
+                    class="flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+                    <a href="#"
+                        class="block px-3 py-2 {{ request()->routeIs('home') ? 'text-blue-500' : 'text-black' }} rounded md:bg-transparent md:p-0">Home</a>
+                    <a href="#" class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0">Articles</a>
+                    <a href="#" class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0">About</a>
+                    <a href="#" class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0">Contact</a>
+                    <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->instagram ?? '#' }}"
+                        class="block px-3 py-2 text-2xl text-black rounded md:bg-transparent md:p-0">
+                        <img src="{{ asset('assets/svgs/ic-instagram.svg') }}" alt="Instagram" />
+                    </a>
+                    <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->youtube ?? '#' }}"
+                        class="block px-3 py-2 text-2xl text-black rounded md:bg-transparent md:p-0">
+                        <img src="{{ asset('assets/svgs/ic-youtube.svg') }}" alt="Youtube" />
+                    </a>
+                    <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->linkedin ?? '#' }}"
+                        class="block px-3 py-2 text-2xl text-black rounded md:bg-transparent md:p-0">
+                        <img src="{{ asset('assets/svgs/ic-linkedin.svg') }}" alt="Linkedin" />
+                    </a>
+                    <a class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0"
+                        href="{{ route('login') }}">Sign In</a>
+                </ul>
             </div>
         </div>
-        <div class="event">
-            <h2>Event</h2>
-            <div class="video">
-                <video src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" controls></video>
-                <div class="play-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                        <path d="m11.596 8.697c-.21-.21-.45-.356-.78-.468-.328-.11-.662-.253-.901-.407C7.55 4.05 5.55 2.1 3.394 1.157a.837.837 0 0 0-.113.022A7.96 7.96 0 0 0 2 7.725c0 2.064 1.67 3.725 3.88 3.725a.837.837 0 0 0 .114-.022A7.96 7.96 0 0 0 14 7.725c0-2.064-1.67-3.725-3.88-3.725a.837.837 0 0 0-.113.022A7.958 7.958 0 0 0 11.596 8.697z"/>
-                    </svg>
+    </nav>
+
+    <!-- Hero -->
+    <div style="background-color: #F6F6F6" class="py-16">
+        <div class="mx-8 mt-36">
+            <div class="flex flex-wrap w-full justify-evenly">
+                <div>
+                    <h1 class="text-2xl font-bold w-96">
+                        Bertumbuh dengan kolaborasi, Menuju visi &quot;Bersinergi, Berkolaborasi dan
+                        Berinovasi&quot;
+                    </h1>
+                    <div class="mt-4">
+                        <a href="{{ route('login') }}" style="background-color: #0F3F62"
+                            class="px-3 py-2 font-medium text-white duration-100 ease-in-out rounded-md hover:bg-blue-700">
+                            Bergabung
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="blog">
-            <div class="post">
-                <div class="image">
-                    <img src="https://i.imgur.com/H17kF5s.png" alt="Post 1">
-                </div>
-                <div class="content">
-                    <h3>long established</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that....</p>
-                    <a href="#">Read more</a>
-                </div>
-            </div>
-            <div class="post">
-                <div class="image">
-                    <img src="https://i.imgur.com/H17kF5s.png" alt="Post 2">
-                </div>
-                <div class="content">
-                    <h3>long established</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that....</p>
-                    <a href="#">Read more</a>
-                </div>
-            </div>
-            <div class="post">
-                <div class="image">
-                    <img src="https://i.imgur.com/H17kF5s.png" alt="Post 3">
-                </div>
-                <div class="content">
-                    <h3>long established</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that....</p>
-                    <a href="#">Read more</a>
-                </div>
-            </div>
-            <div class="post">
-                <div class="image">
-                    <img src="https://i.imgur.com/H17kF5s.png" alt="Post 4">
-                </div>
-                <div class="content">
-                    <h3>long established</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that....</p>
-                    <a href="#">Read more</a>
-                </div>
-            </div>
-            <div class="post">
-                <div class="image">
-                    <img src="https://i.imgur.com/H17kF5s.png" alt="Post 5">
-                </div>
-                <div class="content">
-                    <h3>long established</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that....</p>
-                    <a href="#">Read more</a>
-                </div>
-            </div>
-            <div class="post">
-                <div class="image">
-                    <img src="https://i.imgur.com/H17kF5s.png" alt="Post 6">
-                </div>
-                <div class="content">
-                    <h3>long established</h3>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that....</p>
-                    <a href="#">Read more</a>
+                <div>
+                    <Image src="{{ asset('assets/images/home-croods-1.webp') }}" width={476} height={323}
+                        alt="Hero" />
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Our Partnership -->
+    <div class="my-20">
+        <h1 class="mb-4 text-4xl font-bold text-center">Our Partnership</h1>
+        <div class="w-[80rem] m-auto flex flex-wrap justify-center items-center gap-8">
+            @foreach ($partners as $partner)
+                <div class="mt-4 bg-gray-200 w-[243px] h-[105px] flex justify-center items-center rounded-md">
+                    <img src="{{ asset('storage/' . $partner->logo) }}" alt={{ $partner->name }}
+                        class="object-contain w-[180px] h-[100px] p-2" />
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Event -->
+    <div class="mb-20">
+        <h1 class="mb-4 text-4xl font-bold text-center">Event</h1>
+        <div class="w-[80rem] m-auto flex flex-wrap justify-center items-center gap-8">
+            <!-- Owl Carousel -->
+            <div class="items-center owl-carousel">
+                @foreach ($events as $event)
+                    @foreach ($event->event_images as $image)
+                        <div class="item">
+                            <div class="flex justify-center">
+                                <img src="{{ asset('storage/' . $image->image) }}"
+                                    class="!w-[926px] !h-[508px] object-fit" alt="{{ $event->title }}" />
+                            </div>
+                        </div>
+                    @endforeach
+                @endforeach
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Event / Blog -->
+    <div class="mb-20">
+        <h1 class="mb-4 text-4xl font-bold text-center">Article</h1>
+        <div class="w-[70rem] m-auto flex flex-wrap justify-center items-center gap-8">
+            @foreach ($articles as $article)
+                <div class="w-[300px] h-[382px] bg-white rounded-md shadow-md">
+                    <img src="{{ asset('storage/' . $article->image) }}" alt={{ $article->name }}
+                        class="w-full h-44 rounded-t-md w-[200px] h-[200px]" />
+
+                    <div class="p-4">
+                        <div class="mb-4">
+                            <h1 class="mb-2 text-lg font-bold">{{ $article->name }}</h1>
+                            <p class="text-sm text-gray-500">{!! Illuminate\Support\Str::limit($article->content, 100) !!}</p>
+                        </div>
+                        <footer class="flex items-center justify-between">
+                            <div class="text-gray-500">{{ $article->created_at->format('d F Y') }}</div>
+                            <a href="#" class="font-bold">
+                                Read More
+                            </a>
+                        </footer>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-4 bg-white border-t-2 border-gray-200">
+        <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-8 mx-auto">
+            <div class="text-lg font-bold">NaraiCoder Org {{ date('Y') }}</div>
+            <div>
+                <ul class="flex flex-wrap gap-x-8">
+                    <li>
+                        <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->instagram ?? '#' }}"
+                            className="block py-2 px-3 rounded md:border-0 md:p-0 text-black md:hover:text-blue-500 hover:text-white text-2xl">
+                            <img src="{{ asset('assets/svgs/ic-instagram.svg') }}" alt="Instagram" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->youtube ?? '#' }}"
+                            className="block py-2 px-3 rounded md:border-0 md:p-0 text-black md:hover:text-blue-500 hover:text-white text-2xl">
+                            <img src="{{ asset('assets/svgs/ic-youtube.svg') }}" alt="Youtube" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->linkedin ?? '#' }}"
+                            className="block py-2 px-3 rounded md:border-0 md:p-0 text-black md:hover:text-blue-500 hover:text-white text-2xl">
+                            <img src="{{ asset('assets/svgs/ic-linkedin.svg') }}" alt="linkedin" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery (necessary for Owl Carousel) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 10,
+                nav: true
+            });
+
+            $('.owl-nav').addClass('flex justify-center');
+        });
+    </script>
 </body>
+
 </html>
