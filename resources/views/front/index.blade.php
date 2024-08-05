@@ -128,7 +128,7 @@
                         <div class="item">
                             <div class="flex justify-center">
                                 <img src="{{ asset('storage/' . $image->image) }}"
-                                    class="!w-[926px] !h-[508px] object-fit" alt="{{ $event->title }}" />
+                                    class="!w-[526px] !h-[508px] object-fit" alt="{{ $event->title }}" />
                             </div>
                         </div>
                     @endforeach
@@ -144,13 +144,12 @@
         <div class="w-[70rem] m-auto flex flex-wrap justify-center items-center gap-8">
             @foreach ($articles as $article)
                 <div class="w-[300px] h-[382px] bg-white rounded-md shadow-md">
-                    <img src="{{ asset('storage/' . $article->image) }}" alt={{ $article->name }}
-                        class="w-full h-44 rounded-t-md w-[200px] h-[200px]" />
-
+                    <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}"
+                        class="w-full h-44 rounded-t-md w-[200px] h-[140px]" />
                     <div class="p-4">
                         <div class="mb-4">
-                            <h1 class="mb-2 text-lg font-bold">{{ $article->name }}</h1>
-                            <p class="text-sm text-gray-500">{!! Illuminate\Support\Str::limit($article->content, 100) !!}</p>
+                            <h1 class="mb-2 text-lg font-bold">{{ $article->title }}</h1>
+                            <p class="text-sm text-gray-500">{!! Illuminate\Support\Str::limit($article->content, 160) !!}</p>
                         </div>
                         <footer class="flex items-center justify-between">
                             <div class="text-gray-500">{{ $article->created_at->format('d F Y') }}</div>
