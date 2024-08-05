@@ -14,36 +14,46 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     @vite(['resources/js/app.js'])
     <style>
-        .owl-dot {
-            background: #1977F3;
-            border-radius: 50%;
-            width: 12px;
-            height: 12px;
-            margin: 0 5px;
+        .owl-carousel-container {
+            position: relative;
         }
 
-        .owl-dot.active {
-            background: #ffffff;
-        }
-
-        .owl-nav button {
-            background: #1977F3;
+        .owl-prev,
+        .owl-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
             border: none;
-            color: #fff;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            font-size: 16px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 10;
         }
 
-        .owl-nav button.owl-prev {
-            left: 10px;
-            font-size: 16px;
+        .owl-prev {
+            left: 150px;
         }
 
-        .owl-nav button.owl-next {
-            right: 10px;
+        .owl-next {
+            right: 150px;
+        }
+
+        .owl-prev:hover,
+        .owl-next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .owl-prev svg,
+        .owl-next svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
         }
     </style>
 </head>
@@ -95,7 +105,7 @@
                     </div>
                 </div>
                 <div>
-                    <Image src="{{ asset('assets/images/home-croods-1.webp') }}" width={476} height={323}
+                    <img src="{{ asset('assets/images/home-croods-1.webp') }}" class="w-[476px] h-[323px]"
                         alt="Hero" />
                 </div>
             </div>
@@ -192,7 +202,11 @@
                 items: 1,
                 loop: true,
                 margin: 10,
-                nav: true
+                nav: true,
+                navText: [
+                    '<button class="owl-prev"><img src="{{ asset("assets/svgs/ic-arrow-left.svg") }}" alt="left" class="w-[32px] h-[66px]" /></button>',
+                    '<button class="owl-next"><img src="{{ asset("assets/svgs/ic-arrow-right.svg") }}" alt="left" class="w-[32px] h-[66px]" /></svg></button>'
+                ],
             });
 
             $('.owl-nav').addClass('flex justify-center');
