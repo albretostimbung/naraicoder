@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Article;
 use App\Models\Partner;
 use Illuminate\Http\Request;
+use App\Models\SocialProfile;
 use App\Models\CommunityProfile;
 use App\Http\Controllers\Controller;
 
@@ -14,10 +15,11 @@ class FrontController extends Controller
     public function index()
     {
         $communityProfile = CommunityProfile::first();
+        $socialProfile = SocialProfile::all();
         $partners = Partner::latest()->get();
         $events = Event::latest()->get();
         $articles = Article::latest()->get();
 
-        return view('front.index', compact('communityProfile', 'partners', 'events', 'articles'));
+        return view('front.index', compact('communityProfile', 'socialProfile', 'partners', 'events', 'articles'));
     }
 }

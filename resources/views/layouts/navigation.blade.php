@@ -25,6 +25,10 @@
                             {{ __('Community Profiles') }}
                         </x-nav-link>
 
+                        <x-nav-link :href="route('admin.social-profiles.index')" :active="request()->routeIs('admin.social-profiles.*')">
+                            {{ __('Social Profiles') }}
+                        </x-nav-link>
+
                         <x-nav-link :href="route('admin.partners.index')" :active="request()->routeIs('admin.partners.*')">
                             {{ __('Partners') }}
                         </x-nav-link>

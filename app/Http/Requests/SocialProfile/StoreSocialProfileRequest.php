@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\CommunityProfile;
+namespace App\Http\Requests\SocialProfile;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCommunityProfileRequest extends FormRequest
+class StoreSocialProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class StoreCommunityProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|string|max:255',
-            'about' => 'sometimes|string|max:35553',
-            'logo' => 'sometimes|image|mimes:jpeg,jpg,png|max:2048',
+            'name' => 'required|string|max:255',
+            'url' => 'nullable|url|max:255',
+            'icon' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
         ];
     }
 }

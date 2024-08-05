@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityProfile\CommunityProfileController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\SocialProfile\SocialProfileController;
 use App\Http\Controllers\Team\TeamController;
 
 Route::get('/', [FrontController::class, 'index'])->name('home');
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function () {
         Route::resource('community-profiles', CommunityProfileController::class);
+        Route::resource('social-profiles', SocialProfileController::class);
         Route::resource('partners', PartnerController::class);
         Route::resource('teams', TeamController::class);
         Route::resource('articles', ArticleController::class);

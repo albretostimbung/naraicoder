@@ -65,18 +65,12 @@
                     <a href="#" class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0">Articles</a>
                     <a href="#" class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0">About</a>
                     <a href="#" class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0">Contact</a>
-                    <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->instagram ?? '#' }}"
-                        class="block px-3 py-2 text-2xl text-black rounded md:bg-transparent md:p-0">
-                        <img src="{{ asset('assets/svgs/ic-instagram.svg') }}" alt="Instagram" />
-                    </a>
-                    <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->youtube ?? '#' }}"
-                        class="block px-3 py-2 text-2xl text-black rounded md:bg-transparent md:p-0">
-                        <img src="{{ asset('assets/svgs/ic-youtube.svg') }}" alt="Youtube" />
-                    </a>
-                    <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->linkedin ?? '#' }}"
-                        class="block px-3 py-2 text-2xl text-black rounded md:bg-transparent md:p-0">
-                        <img src="{{ asset('assets/svgs/ic-linkedin.svg') }}" alt="Linkedin" />
-                    </a>
+                    @foreach ($socialProfile as $social)
+                        <a href="{{ $social->url }}"
+                            class="block px-3 py-2 text-2xl text-black rounded md:bg-transparent md:p-0">
+                            <img src="{{ asset('storage/' . $social->icon) }}" alt="{{ $social->name }}" />
+                        </a>
+                    @endforeach
                     <a class="block px-3 py-2 text-black rounded md:bg-transparent md:p-0"
                         href="{{ route('login') }}">Sign In</a>
                 </ul>
@@ -176,24 +170,14 @@
             <div class="text-lg font-bold">{{ config('app.name') }} {{ date('Y') }}</div>
             <div>
                 <ul class="flex flex-wrap gap-x-8">
-                    <li>
-                        <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->instagram ?? '#' }}"
-                            className="block py-2 px-3 rounded md:border-0 md:p-0 text-black md:hover:text-blue-500 hover:text-white text-2xl">
-                            <img src="{{ asset('assets/svgs/ic-instagram.svg') }}" alt="Instagram" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->youtube ?? '#' }}"
-                            className="block py-2 px-3 rounded md:border-0 md:p-0 text-black md:hover:text-blue-500 hover:text-white text-2xl">
-                            <img src="{{ asset('assets/svgs/ic-youtube.svg') }}" alt="Youtube" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ json_decode(App\Models\CommunityProfile::first()->social_media)->linkedin ?? '#' }}"
-                            className="block py-2 px-3 rounded md:border-0 md:p-0 text-black md:hover:text-blue-500 hover:text-white text-2xl">
-                            <img src="{{ asset('assets/svgs/ic-linkedin.svg') }}" alt="linkedin" />
-                        </a>
-                    </li>
+                    @foreach ($socialProfile as $social)
+                        <li>
+                            <a href="{{ $social->url }}"
+                                className="block py-2 px-3 rounded md:border-0 md:p-0 text-black md:hover:text-blue-500 hover:text-white text-2xl">
+                                <img src="{{ asset('storage/' . $social->icon) }}" alt="{{ $social->name }}" />
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

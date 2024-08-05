@@ -21,12 +21,6 @@ NaraiCoder dibentuk sebagai wadah berkumpul dan berbagi wawasan para programmer/
 Kegiatan yang telah dilakukan oleh NaraiCoder yaitu mengadakan webinar seputar programming dan dunia IT, pelatihan hardskill dan softskill dengan narasumber profesional dari berbagai perusahaan besar di Indonesia, lomba digital startup area Kalteng, menjadi jembatan talent dan recruiter serta pengembangan portfolio anggota member.
 
 Naraicoder berharap bisa menjangkau peserta baik dari tingkat pemula hingga senior. Sehingga anggota komunitas ini tidak dibatasi latar belakang ataupun tingkat usia.',
-            'social_media' => json_encode([
-                'website' => 'https://naraicoder.org/',
-                'instagram' => 'https://www.instagram.com/naraicoder',
-                'telegram' => 'https://t.me/naraicoder',
-                'email' => 'naraicoder@gmail.com',
-            ]),
         ]);
     }
 }

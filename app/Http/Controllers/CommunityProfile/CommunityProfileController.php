@@ -40,13 +40,7 @@ class CommunityProfileController extends Controller
                 $communityProfile = CommunityProfile::first();
 
                 if (!$request->hasFile('logo')) {
-                    $communityProfile->update(array_merge($request->validated(), [
-                        'social_media' => json_encode([
-                            'website' => $request->social_media['website'],
-                            'instagram' => $request->social_media['instagram'],
-                            'telegram' => $request->social_media['telegram'],
-                        ]),
-                    ]));
+                    $communityProfile->update($request->validated());
 
                     return;
                 }
@@ -58,11 +52,6 @@ class CommunityProfileController extends Controller
                 $logoPath = $request->file('logo')->store('community_logos', 'public');
 
                 $communityProfile->update(array_merge($request->validated(), [
-                    'social_media' => json_encode([
-                        'website' => $request->social_media['website'],
-                        'instagram' => $request->social_media['instagram'],
-                        'telegram' => $request->social_media['telegram'],
-                    ]),
                     'logo' => $logoPath
                 ]));
             });
