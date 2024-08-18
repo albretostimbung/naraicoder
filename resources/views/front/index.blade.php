@@ -33,7 +33,8 @@
                 visi<br />"Bersinergi,
                 Berkolaborasi dan
                 Berinovasi"</div>
-            <a href="#" class="rounded-full p-[12px_54px] uppercase bg-[#2E4DEC] text-white font-semibold">Join
+            <a href="{{ route('register') }}"
+                class="rounded-full p-[12px_54px] uppercase bg-[#2E4DEC] text-white font-semibold hover:bg-[#0F3F62] transition-all duration-300">Join
                 Now</a>
             <div class="flex items-center justify-center">
                 <img src="./assets/images/hero-image-1.svg" alt="Hero" class="mt-[64px]">
@@ -341,7 +342,7 @@
         <div class="flex gap-x-24 items-start max-w-[1130px] mx-auto">
             <img src="./assets/images/logos/logo.svg" alt="logo">
             <div>
-                <div class="font-semibold text-lg mb-[36px]">Explore</div>
+                <div class="font-semibold text-lg mb-[32px]">Explore</div>
                 <div class="flex flex-col gap-y-4">
                     <a href="#">Our Services</a>
                     <a href="#">Spesification</a>
@@ -350,7 +351,7 @@
                 </div>
             </div>
             <div>
-                <div class="font-semibold text-lg mb-[36px]">Account</div>
+                <div class="font-semibold text-lg mb-[32px]">Account</div>
                 <div class="flex flex-col gap-y-4">
                     <a href="#">My Account</a>
                     <a href="#">Top Benefit</a>
@@ -359,7 +360,7 @@
                 </div>
             </div>
             <div>
-                <div class="font-semibold text-lg mb-[36px]">Office</div>
+                <div class="font-semibold text-lg mb-[32px]">Office</div>
                 <div class="flex flex-col gap-y-4">
                     <a href="#">+021 2208 1996</a>
                     <a href="#">Menteng, Palangka Raya</a>
