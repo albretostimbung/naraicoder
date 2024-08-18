@@ -1,0 +1,21 @@
+/* width */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(238, 240, 247, 1);
+    border: solid 2.5px white;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(46, 77, 236, 1);
+    border-radius: 3px;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(46, 77, 236, 1);
+}
