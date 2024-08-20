@@ -29,15 +29,13 @@
 
     <section id="Hero" class="w-full mx-auto flex justify-center items-center bg-[#F7F8FA]">
         <div class="max-w-[1130px] pt-[60px] pb-[36px] text-center">
-            <div class="mb-[20px] text-3xl font-semibold leading-8">Bertumbuh dengan kolaborasi, Menuju
-                visi<br />"Bersinergi,
-                Berkolaborasi dan
-                Berinovasi"</div>
-            <a href="{{ route('register') }}"
-                class="rounded-full p-[12px_54px] uppercase bg-[#2E4DEC] text-white font-semibold hover:bg-[#0F3F62] transition-all duration-300">Join
-                Now</a>
+            <div class="mb-[20px] text-3xl font-semibold leading-8">
+                {!! $heroSection->heading !!}
+            </div>
+            <a href="{{ $heroSection->button_link }}"
+                class="rounded-full p-[12px_54px] uppercase bg-[#2E4DEC] text-white font-semibold hover:bg-[#0F3F62] transition-all duration-300">{{ $heroSection->button_text }}</a>
             <div class="flex items-center justify-center">
-                <img src="./assets/images/hero-image-1.svg" alt="Hero" class="mt-[64px]">
+                <img src="{{ Storage::url($heroSection->thumbnail) }}" alt="Hero" class="mt-[64px]">
             </div>
         </div>
     </section>
@@ -48,37 +46,17 @@
             build<br />and
             strengthen our
             community every day</div>
-        <div class="main-carousel w-full outline-none overflow-hidden">
-            <div class="flex shrink-0 mr-[46px]">
-                <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
-                    <img src="./assets/images/partners/partner-1.svg" alt="Partner 1" />
-                </a>
-            </div>
-            <div class="flex shrink-0 mr-[46px]">
-                <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
-                    <img src="./assets/images/partners/partner-2.svg" alt="Partner 1" />
-                </a>
-            </div>
-            <div class="flex shrink-0 mr-[46px]">
-                <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
-                    <img src="./assets/images/partners/partner-3.svg" alt="Partner 1" />
-                </a>
-            </div>
-            <div class="flex shrink-0 mr-[46px]">
-                <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
-                    <img src="./assets/images/partners/partner-4.svg" alt="Partner 1" />
-                </a>
-            </div>
-            <div class="flex shrink-0 mr-[46px]">
-                <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
-                    <img src="./assets/images/partners/partner-1.svg" alt="Partner 1" />
-                </a>
-            </div>
-            <div class="flex shrink-0 mr-[46px]">
-                <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
-                    <img src="./assets/images/partners/partner-2.svg" alt="Partner 1" />
-                </a>
-            </div>
+        <div class="w-full overflow-hidden outline-none main-carousel">
+            @forelse($partners as $partner)
+                <div class="flex shrink-0 mr-[46px]">
+                    <a href="{{ $partner->url }}"
+                        class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
+                        <img src="{{ Storage::url($partner->logo) }}" alt="{{ $partner->name }}" />
+                    </a>
+                </div>
+            @empty
+                <p>Belum ada data</p>
+            @endforelse
         </div>
     </section>
 
@@ -89,9 +67,9 @@
                 class="rounded-full p-[12px_54px] border border-[#22222] uppercase bg-white text-black font-semibold hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">Explore
                 All</a>
         </div>
-        <div class="flex justify-between items-center h-fit">
+        <div class="flex items-center justify-between h-fit">
             <div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[16px] overflow-hidden">
-                <img src="./assets/images/events/event-1.png" class="thumbnail absolute w-full h-full object-cover"
+                <img src="./assets/images/events/event-1.png" class="absolute object-cover w-full h-full thumbnail"
                     alt="icon" />
                 <div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10">
                 </div>
@@ -224,9 +202,9 @@
                 class="rounded-full p-[12px_54px] border border-[#22222] uppercase bg-white text-black font-semibold hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">Explore
                 All</a>
         </div>
-        <div class="flex justify-between items-center h-fit">
+        <div class="flex items-center justify-between h-fit">
             <div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[16px] overflow-hidden">
-                <img src="./assets/images/events/event-1.png" class="thumbnail absolute w-full h-full object-cover"
+                <img src="./assets/images/events/event-1.png" class="absolute object-cover w-full h-full thumbnail"
                     alt="icon" />
                 <div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10">
                 </div>
