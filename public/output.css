@@ -628,6 +628,14 @@ video {
   margin-top: 80px;
 }
 
+.mr-\[42px\] {
+  margin-right: 42px;
+}
+
+.mr-\[46px\] {
+  margin-right: 46px;
+}
+
 .flex {
   display: flex;
 }

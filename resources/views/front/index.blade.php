@@ -49,32 +49,32 @@
             strengthen our
             community every day</div>
         <div class="main-carousel w-full outline-none overflow-hidden">
-            <div class="flex shrink-0 mr-[40px]">
+            <div class="flex shrink-0 mr-[46px]">
                 <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
                     <img src="./assets/images/partners/partner-1.svg" alt="Partner 1" />
                 </a>
             </div>
-            <div class="flex shrink-0 mr-[40px]">
+            <div class="flex shrink-0 mr-[46px]">
                 <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
                     <img src="./assets/images/partners/partner-2.svg" alt="Partner 1" />
                 </a>
             </div>
-            <div class="flex shrink-0 mr-[40px]">
+            <div class="flex shrink-0 mr-[46px]">
                 <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
                     <img src="./assets/images/partners/partner-3.svg" alt="Partner 1" />
                 </a>
             </div>
-            <div class="flex shrink-0 mr-[40px]">
+            <div class="flex shrink-0 mr-[46px]">
                 <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
                     <img src="./assets/images/partners/partner-4.svg" alt="Partner 1" />
                 </a>
             </div>
-            <div class="flex shrink-0 mr-[40px]">
+            <div class="flex shrink-0 mr-[46px]">
                 <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
                     <img src="./assets/images/partners/partner-1.svg" alt="Partner 1" />
                 </a>
             </div>
-            <div class="flex shrink-0 mr-[40px]">
+            <div class="flex shrink-0 mr-[46px]">
                 <a href="#" class="rounded-[16px] border border-[#E5E5E5] p-[25px] flex items-center">
                     <img src="./assets/images/partners/partner-2.svg" alt="Partner 1" />
                 </a>
