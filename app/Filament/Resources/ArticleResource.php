@@ -9,7 +9,9 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,7 +23,7 @@ class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     public static function form(Form $form): Form
     {
@@ -68,7 +70,17 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                    ->searchable(),
+
+                TextColumn::make('is_featured')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'featured' => 'success',
+                        'not_featured' => 'danger',
+                    }),
+
+                ImageColumn::make('thumbnail')
             ])
             ->filters([
                 //

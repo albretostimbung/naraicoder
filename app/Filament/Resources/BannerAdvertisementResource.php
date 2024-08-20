@@ -9,7 +9,9 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Models\BannerAdvertisement;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -20,7 +22,7 @@ class BannerAdvertisementResource extends Resource
 {
     protected static ?string $model = BannerAdvertisement::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
 
     public static function form(Form $form): Form
     {
@@ -54,7 +56,17 @@ class BannerAdvertisementResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('link')
+                    ->searchable(),
+
+                TextColumn::make('is_active')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'active' => 'success',
+                        'not_active' => 'danger',
+                    }),
+
+                ImageColumn::make('thumbnail')
             ])
             ->filters([
                 //

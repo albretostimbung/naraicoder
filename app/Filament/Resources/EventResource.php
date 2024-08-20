@@ -22,7 +22,7 @@ class EventResource extends Resource
 {
     protected static ?string $model = Event::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
     public static function form(Form $form): Form
     {
@@ -56,7 +56,22 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                    ->searchable(),
+
+                TextColumn::make('is_online')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'online' => 'success',
+                        'offline' => 'danger',
+                    }),
+
+                TextColumn::make('is_featured')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'featured' => 'success',
+                        'not_featured' => 'danger',
+                    }),
 
                 ImageColumn::make('thumbnail')
             ])
