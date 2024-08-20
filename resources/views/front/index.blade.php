@@ -69,109 +69,39 @@
         </div>
         <div class="flex items-center justify-between h-fit">
             <div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[16px] overflow-hidden">
-                <img src="./assets/images/events/event-1.png" class="absolute object-cover w-full h-full thumbnail"
-                    alt="icon" />
+                <img src="{{ Storage::url($featured_event->thumbnail) }}"
+                    class="absolute object-cover w-full h-full thumbnail" alt="icon" />
                 <div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10">
                 </div>
                 <div class="card-detail w-full flex items-end p-[30px] relative z-20">
                     <div class="flex flex-col gap-[10px]">
-                        <a href="details.html"
-                            class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">Rela
-                            Tampil Menarik Depan Wanita, Pria Ini Jadi Bahan Bicaraan</a>
-                        <p class="text-white">12 Jun, 2024</p>
+                        <p class="text-white">{{ $featured_event->is_online == 'online' ? 'Online' : 'Offline' }}</p>
+                        <a href="{{ $featured_event->slug }}"
+                            class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">{{ $featured_event->name }}</a>
+                        <p class="text-white">{{ $featured_event->created_at->format('d M, Y') }}</p>
                     </div>
                 </div>
             </div>
             <div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
                 <div class="w-[455px] flex flex-col gap-5 shrink-0">
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
+                    @forelse($events as $event)
+                        <a href="{{ $event->slug }}" class="card py-[2px]">
+                            <div
+                                class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
+                                <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
+                                    <img src="{{ Storage::url($event->thumbnail) }}" class="object-cover w-full h-full"
+                                        alt="thumbnail" />
+                                </div>
+                                <div class="flex flex-col justify-center-center gap-[6px]">
+                                    <h3 class="font-bold text-lg leading-[27px]">{{ $event->name }}</h3>
+                                    <p class="text-sm leading-[21px] text-[#A3A6AE]">
+                                        {{ $event->created_at->format('d M, Y') }}</p>
+                                </div>
                             </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal, begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Gaya pakaian pernikahan artis ini beneran
-                                    unik</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Tips bersepeda bareng pasangan baru, makin
-                                    seru!
-                                </h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal,
-                                    begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal,
-                                    begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal,
-                                    begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    @empty
+                        <p>Belum ada data</p>
+                    @endforelse
                 </div>
                 <div
                     class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]">
@@ -182,16 +112,20 @@
 
     <section id="Advertisement" class="max-w-[1130px] mx-auto flex justify-center mt-[100px]">
         <div class="flex flex-col gap-3 shrink-0 w-fit">
-            <a href="#">
-                <div class="w-[900px] h-[120px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
-                    <img src="./assets/images/ads/banner-wide-1.gif" class="object-cover w-full h-full"
-                        alt="ads" />
-                </div>
-            </a>
-            <p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
-                Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
-                        src="./assets/images/icons/message-question.svg" alt="icon" /></a>
-            </p>
+            @forelse($banner_ads as $banner)
+                <a href="{{ $banner->link }}">
+                    <div class="w-[900px] h-[120px] flex shrink-0 border border-[#EEF0F7] rounded-2xl overflow-hidden">
+                        <img src="{{ Storage::url($banner->thumbnail) }}" class="object-cover w-full h-full"
+                            alt="ads" />
+                    </div>
+                </a>
+                <p class="font-medium text-sm leading-[21px] text-[#A3A6AE] flex gap-1">
+                    Our Advertisement <a href="#" class="w-[18px] h-[18px]"><img
+                            src="./assets/images/icons/message-question.svg" alt="icon" /></a>
+                </p>
+            @empty
+                <p>Belum ada data</p>
+            @endforelse
         </div>
     </section>
 
@@ -204,110 +138,40 @@
         </div>
         <div class="flex items-center justify-between h-fit">
             <div class="featured-news-card relative w-full h-[424px] flex flex-1 rounded-[16px] overflow-hidden">
-                <img src="./assets/images/events/event-1.png" class="absolute object-cover w-full h-full thumbnail"
-                    alt="icon" />
+                <img src="{{ Storage::url($featured_article->thumbnail) }}"
+                    class="absolute object-cover w-full h-full thumbnail" alt="icon" />
                 <div class="w-full h-full bg-gradient-to-b from-[rgba(0,0,0,0)] to-[rgba(0,0,0,0.9)] absolute z-10">
                 </div>
                 <div class="card-detail w-full flex items-end p-[30px] relative z-20">
                     <div class="flex flex-col gap-[10px]">
                         <a href="details.html"
                             class="font-bold text-[30px] leading-[36px] text-white hover:underline transition-all duration-300">Rela
-                            Tampil Menarik Depan Wanita, Pria Ini Jadi Bahan Bicaraan</a>
-                        <p class="text-white">12 Jun, 2024</p>
+                            {{ str()->limit($featured_article->name, 50) }}</a>
+                        <p class="text-white">{{ $featured_article->created_at->format('d M, Y') }}</p>
                     </div>
                 </div>
             </div>
             <div class="h-[424px] w-fit px-5 overflow-y-scroll overflow-x-hidden relative custom-scrollbar">
                 <div class="w-[455px] flex flex-col gap-5 shrink-0">
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
+                    @forelse($articles as $article)
+                        <a href="{{ $article->slug }}" class="card py-[2px]">
+                            <div
+                                class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
+                                <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
+                                    <img src="{{ Storage::url($article->thumbnail) }}"
+                                        class="object-cover w-full h-full" alt="thumbnail" />
+                                </div>
+                                <div class="flex flex-col justify-center-center gap-[6px]">
+                                    <h3 class="font-bold text-lg leading-[27px]">
+                                        {{ str()->limit($article->name, 50) }}</h3>
+                                    <p class="text-sm leading-[21px] text-[#A3A6AE]">
+                                        {{ $article->created_at->format('d M, Y') }}</p>
+                                </div>
                             </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal,
-                                    begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Gaya pakaian pernikahan artis ini beneran
-                                    unik</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Tips bersepeda bareng pasangan baru, makin
-                                    seru!
-                                </h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal,
-                                    begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal,
-                                    begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="details.html" class="card py-[2px]">
-                        <div
-                            class="rounded-[16px] border border-[#E5E5E5] p-[14px] flex items-center gap-4 hover:ring-2 hover:ring-[#2E4DEC] transition-all duration-300">
-                            <div class="w-[130px] h-[100px] flex shrink-0 rounded-[16px] overflow-hidden">
-                                <img src="./assets/images/events/event-1.png" class="object-cover w-full h-full"
-                                    alt="thumbnail" />
-                            </div>
-                            <div class="flex flex-col justify-center-center gap-[6px]">
-                                <h3 class="font-bold text-lg leading-[27px]">Bikin house party tanpa biaya mahal,
-                                    begini
-                                    tipsnya!</h3>
-                                <p class="text-sm leading-[21px] text-[#A3A6AE]">12 Jun, 2024</p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    @empty
+                        <p>Belum ada data</p>
+                    @endforelse
                 </div>
                 <div
                     class="sticky z-10 bottom-0 w-full h-[100px] bg-gradient-to-b from-[rgba(255,255,255,0.19)] to-[rgba(255,255,255,1)]">

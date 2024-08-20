@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\HeroSectionResource\Pages;
-use App\Filament\Resources\HeroSectionResource\RelationManagers;
-use App\Models\HeroSection;
+use App\Filament\Resources\EventResource\Pages;
+use App\Filament\Resources\EventResource\RelationManagers;
+use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,9 +18,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class HeroSectionResource extends Resource
+class EventResource extends Resource
 {
-    protected static ?string $model = HeroSection::class;
+    protected static ?string $model = Event::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -28,7 +28,7 @@ class HeroSectionResource extends Resource
     {
         return $form
             ->schema([
-                RichEditor::make('heading')
+                TextInput::make('name')
                     ->required()
                     ->maxLength(255),
 
@@ -36,13 +36,19 @@ class HeroSectionResource extends Resource
                     ->required()
                     ->image(),
 
-                TextInput::make('button_text')
-                    ->required()
-                    ->maxLength(255),
+                Select::make('is_online')
+                    ->options([
+                        'online' => 'Online',
+                        'offline' => 'Offline',
+                    ])
+                    ->required(),
 
-                TextInput::make('button_link')
-                    ->required()
-                    ->maxLength(255),
+                Select::make('is_featured')
+                    ->options([
+                        'featured' => 'Featured',
+                        'not_featured' => 'Not Featured',
+                    ])
+                    ->required(),
             ]);
     }
 
@@ -50,9 +56,9 @@ class HeroSectionResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('heading'),
+                TextColumn::make('name'),
 
-                ImageColumn::make('thumbnail'),
+                ImageColumn::make('thumbnail')
             ])
             ->filters([
                 //
@@ -61,9 +67,9 @@ class HeroSectionResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                // Tables\Actions\BulkActionGroup::make([
-                //     Tables\Actions\DeleteBulkAction::make(),
-                // ]),
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
     }
 
@@ -77,9 +83,9 @@ class HeroSectionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHeroSections::route('/'),
-            'create' => Pages\CreateHeroSection::route('/create'),
-            'edit' => Pages\EditHeroSection::route('/{record}/edit'),
+            'index' => Pages\ListEvents::route('/'),
+            'create' => Pages\CreateEvent::route('/create'),
+            'edit' => Pages\EditEvent::route('/{record}/edit'),
         ];
     }
 }
