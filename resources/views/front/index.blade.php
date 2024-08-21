@@ -182,7 +182,9 @@
 
     <footer id="Footer" class="mt-[100px] py-[100px] bg-[#F7F8FA]">
         <div class="flex gap-x-24 items-start max-w-[1130px] mx-auto">
-            <img src="./assets/images/logos/logo.svg" alt="logo">
+            <a href="{{ route('front.index') }}">
+                <img src="./assets/images/logos/logo.svg" alt="logo">
+            </a>
             <div>
                 <div class="font-semibold text-lg mb-[32px]">Explore</div>
                 <div class="flex flex-col gap-y-4">
