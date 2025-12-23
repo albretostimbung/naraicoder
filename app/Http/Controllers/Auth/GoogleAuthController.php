@@ -34,6 +34,10 @@ class GoogleAuthController extends Controller
 
         auth()->login($user);
 
+        if ($user->hasRole('admin')) {
+            return redirect('/admin');
+        }
+
         return redirect('/'); // nanti ke halaman event
     }
 }
