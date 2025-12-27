@@ -2,7 +2,7 @@
 
 <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="zoom-in">
     <div class="relative overflow-hidden h-56">
-        <img src="{{ asset('storage/events/' . $event->featured_image) }}"
+        <img src="{{ asset('storage/' . $event->featured_image) }}"
              class="h-full w-full object-cover transition-transform duration-500 hover:scale-110">
 
         <div class="absolute top-4 right-4 {{ $event->event_type == 'OFFLINE' ? 'bg-red-600' : 'bg-blue-600' }} text-white px-3 py-1 rounded-full text-xs font-semibold">
