@@ -70,9 +70,9 @@ class EventForm
                                 ->required()
                                 ->default('draft')
                                 ->options([
-                                    GeneralConstant::EVENT_STATUS_COMING_SOON => 'Coming Soon',
-                                    GeneralConstant::EVENT_STATUS_OPEN => 'Open',
-                                    GeneralConstant::EVENT_STATUS_CLOSED => 'Closed',
+                                    GeneralConstant::EVENT_STATUS_DRAFT => 'Draft',
+                                    GeneralConstant::EVENT_STATUS_PUBLISHED => 'Published',
+                                    GeneralConstant::EVENT_STATUS_CANCELLED => 'Cancelled',
                                 ])
                                 ->native(false)
                                 ->helperText('Draft tidak akan tampil di public'),

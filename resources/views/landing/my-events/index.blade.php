@@ -3,14 +3,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
             {{-- Header Section --}}
-            <div class="mb-8">
+            <div class="mb-8" data-aos="fade-down">
                 <h1 class="text-4xl font-bold text-gray-900 mb-2">My Events</h1>
                 <p class="text-gray-600">Manage and track all your registered events</p>
             </div>
 
             @if ($registrations->isEmpty())
                 {{-- Empty State --}}
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 py-20 text-center">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 py-20 text-center" data-aos="zoom-in">
                     <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
                         <svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -21,7 +21,7 @@
                     <p class="text-gray-500 mb-8 max-w-md mx-auto">
                         You haven't registered for any events. Start exploring and join events that interest you!
                     </p>
-                    <a href="{{ route('events.index') }}"
+                    <a href="{{ route('home') }}"
                        class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,9 +33,8 @@
             @else
 
                 {{-- Search & Stats Bar --}}
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6" data-aos="fade-up">
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-
                         {{-- Search Box --}}
                         <div class="flex-1 max-w-2xl">
                             <div class="relative">
@@ -67,7 +66,7 @@
                 </div>
 
                 {{-- Filter Tabs --}}
-                <div class="mb-6">
+                <div class="mb-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="border-b border-gray-200">
                         <nav class="flex space-x-8 overflow-x-auto" aria-label="Tabs">
                             <button
@@ -112,95 +111,27 @@
 
                 {{-- Events Grid --}}
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="eventsContainer">
-                    @foreach ($registrations as $registration)
+                    @foreach ($registrations as $index => $registration)
                         @php $event = $registration->event; @endphp
 
-                        <div
-                            class="event-card bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                            data-event-type="{{ $event->event_type }}"
-                            data-event-title="{{ strtolower($event->title) }}">
-
-                            {{-- Image with Badge Overlay --}}
-                            <div class="relative">
-                                <img
-                                    src="{{ cloudinary_url($event->featured_image) }}"
-                                    alt="{{ $event->title }}"
-                                    class="w-full h-48 object-cover"
-                                >
-
-                                {{-- Status Badge --}}
-                                <div class="absolute top-3 left-3">
-                                    <span class="px-3 py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm
-                                        @if ($event->status === 'OPEN') bg-green-500/90 text-white
-                                        @elseif ($event->status === 'COMING_SOON') bg-yellow-500/90 text-white
-                                        @elseif ($event->status === 'CLOSED') bg-red-500/90 text-white
-                                        @endif">
-                                        ● {{ str_replace('_', ' ', $event->status) }}
-                                    </span>
-                                </div>
-
-                                {{-- Event Type Badge --}}
-                                <div class="absolute top-3 right-3">
-                                    <span class="px-3 py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm
-                                    @if ($event->event_type === 'ONLINE') bg-blue-500/90 text-white
-                                    @elseif ($event->event_type === 'OFFLINE') bg-green-500/90 text-white
-                                    @endif">
-                                        {{ $event->event_type }}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {{-- Content --}}
-                            <div class="p-5">
-                                <h3 class="font-bold text-lg text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
-                                    {{ $event->title }}
-                                </h3>
-
-                                {{-- Date & Time --}}
-                                <div class="flex items-center text-sm text-gray-600 mb-4">
-                                    @if($event->start_at)
-                                        <div class="text-sm">
-                                            📅 {{ $event->start_at->translatedFormat('l, d M Y') }}
-                                            🕒 {{ $event->start_at->format('H:i') }} WIB
-                                        </div>
-                                    @else
-                                        <div class="text-sm text-orange-600">
-                                            Schedule will be announced — we’ll notify you
-                                        </div>
-                                    @endif
-                                </div>
-
-                                {{-- Attendance Mode (for Hybrid) --}}
-                                @if($event->event_type === 'HYBRID')
-                                    <div class="mb-4 p-3 bg-purple-50 rounded-lg border border-purple-100">
-                                        <p class="text-xs text-purple-700 font-medium mb-1">Your Mode:</p>
-                                        <p class="text-sm font-bold text-purple-900">
-                                            {{ $registration->attendance_mode ?? 'Not Set' }}
-                                        </p>
-                                    </div>
-                                @endif
-
-                                {{-- Actions --}}
-                                <div class="flex gap-2">
-                                    <a href="{{ route('events.show', $event) }}"
-                                       class="flex-1 text-center px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow hover:shadow-md">
-                                        View Details
-                                    </a>
-                                </div>
-                            </div>
+                        <div data-aos="fade-up" data-aos-delay="{{ $index * 50 }}">
+                            <x-my-event-card
+                                :event="$registration->event"
+                                :registration="$registration"
+                            />
                         </div>
                     @endforeach
                 </div>
 
                 {{-- No Results Message --}}
-                <div id="noResults" class="hidden text-center py-12">
+                <div id="noResults" class="hidden text-center py-12" data-aos="fade-up">
                     <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </div>
-                    <p class="text-gray-500 font-medium">You haven’t joined any online events yet</p>
+                    <p class="text-gray-500 font-medium">You haven't joined any online events yet</p>
                     <p class="text-sm text-gray-400 mt-1">Try adjusting your search or filter</p>
                 </div>
 
@@ -209,7 +140,7 @@
         </div>
     </section>
 
-    {{-- JavaScript for Search & Filter --}}
+    {{-- JavaScript remains the same --}}
     @push('scripts')
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -291,7 +222,7 @@
         </script>
     @endpush
 
-    {{-- Additional Styles --}}
+    {{-- Additional Styles remain the same --}}
     @push('styles')
         <style>
             .line-clamp-2 {

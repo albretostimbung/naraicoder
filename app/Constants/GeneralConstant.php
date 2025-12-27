@@ -4,9 +4,9 @@ namespace App\Constants;
 class GeneralConstant
 {
     // Event Status
-    public const EVENT_STATUS_COMING_SOON = 'COMING_SOON';
-    public const EVENT_STATUS_OPEN = 'OPEN';
-    public const EVENT_STATUS_CLOSED = 'CLOSED';
+    public const EVENT_STATUS_DRAFT = 'DRAFT';
+    public const EVENT_STATUS_PUBLISHED = 'PUBLISHED';
+    public const EVENT_STATUS_CANCELLED = 'CANCELLED';
 
     // Event Types
     public const EVENT_TYPE_ONLINE = 'ONLINE';

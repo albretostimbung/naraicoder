@@ -26,8 +26,16 @@ class EventController extends Controller
     {
         $user = $request->user();
 
-        if (!$event->isOpen()) {
-            return back()->with('error', 'Event is not open for registration.');
+        if ($event->status !== 'PUBLISHED') {
+            return back()->with('error', 'This event is not available for registration.');
+        }
+
+        if (!$event->isRegistrationOpen()) {
+            return back()->with('error', 'Registration for this event is closed.');
+        }
+
+        if ($event->registrations()->where('user_id', $user->id)->exists()) {
+            return back()->with('info', 'You are already registered for this event.');
         }
 
         // Simpan registration

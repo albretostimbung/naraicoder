@@ -31,7 +31,7 @@
                             Gabung Sekarang
                         </a>
                     @else
-                        <a href="{{ route('events.index') }}"
+                        <a href="{{ route('my-events.index') }}"
                            class="border-2 border-white px-8 py-4 rounded-lg font-semibold">
                             Lihat Event Saya
                         </a>
@@ -180,7 +180,7 @@
                     </p>
 
                     <div class="flex justify-center gap-4">
-                        <a href="{{ route('events.index') }}"
+                        <a href="{{ route('my-events.index') }}"
                            class="bg-white text-blue-600 px-10 py-5 rounded-xl font-bold">
                             🎫 Lihat Event
                         </a>

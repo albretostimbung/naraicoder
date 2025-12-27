@@ -37,14 +37,14 @@ class EventsTable
                 BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([
-                        'primary' => GeneralConstant::EVENT_STATUS_COMING_SOON,
-                        'success' => GeneralConstant::EVENT_STATUS_OPEN,
-                        'danger' => GeneralConstant::EVENT_STATUS_CLOSED,
+                        'warning' => GeneralConstant::EVENT_STATUS_DRAFT,
+                        'success' => GeneralConstant::EVENT_STATUS_PUBLISHED,
+                        'danger' => GeneralConstant::EVENT_STATUS_CANCELLED,
                     ])
                     ->icons([
-                        'heroicon-o-play' => GeneralConstant::EVENT_STATUS_COMING_SOON,
-                        'heroicon-o-check-circle' => GeneralConstant::EVENT_STATUS_OPEN,
-                        'heroicon-o-x-circle' => GeneralConstant::EVENT_STATUS_CLOSED,
+                        'heroicon-o-clock' => GeneralConstant::EVENT_STATUS_DRAFT,
+                        'heroicon-o-check-circle' => GeneralConstant::EVENT_STATUS_PUBLISHED,
+                        'heroicon-o-x-circle' => GeneralConstant::EVENT_STATUS_CANCELLED,
                     ]),
 
                 TextColumn::make('start_at')
@@ -83,9 +83,9 @@ class EventsTable
                 SelectFilter::make('status')
                     ->label('Filter by Status')
                     ->options([
-                        GeneralConstant::EVENT_STATUS_COMING_SOON => 'Coming Soon',
-                        GeneralConstant::EVENT_STATUS_OPEN => 'Open',
-                        GeneralConstant::EVENT_STATUS_CLOSED => 'Closed',
+                        GeneralConstant::EVENT_STATUS_DRAFT => 'Draft',
+                        GeneralConstant::EVENT_STATUS_PUBLISHED => 'Published',
+                        GeneralConstant::EVENT_STATUS_CANCELLED => 'Cancelled',
                     ]),
             ])
             ->recordActions([

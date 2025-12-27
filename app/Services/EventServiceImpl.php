@@ -26,7 +26,7 @@ class EventServiceImpl implements EventService
 
     public function getAllOpenEvents()
     {
-        $criteria = ['status' => GeneralConstant::EVENT_STATUS_OPEN];
+        $criteria = ['status' => GeneralConstant::EVENT_STATUS_PUBLISHED];
         return $this->eventRepository->getWithCriteria($criteria, 'desc', 3);
     }
 
