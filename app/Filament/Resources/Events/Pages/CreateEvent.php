@@ -3,9 +3,10 @@
 namespace App\Filament\Resources\Events\Pages;
 
 use App\Filament\Resources\Events\EventResource;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Actions\Action;
-use Filament\Support\Enums\MaxWidth;
+use Illuminate\Support\Str;
 
 class CreateEvent extends CreateRecord
 {
@@ -68,14 +69,14 @@ class CreateEvent extends CreateRecord
         return 'Lengkapi form di bawah ini untuk membuat event baru. Semua field bertanda (*) wajib diisi.';
     }
 
-    // Auto-fill created_by sebelum create
+    // Autofill created_by
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['created_by'] = auth()->id();
 
         // Auto-generate slug jika kosong
         if (empty($data['slug']) && !empty($data['title'])) {
-            $data['slug'] = \Illuminate\Support\Str::slug($data['title']);
+            $data['slug'] = Str::slug($data['title']);
         }
 
         return $data;
@@ -86,10 +87,10 @@ class CreateEvent extends CreateRecord
     {
         $event = $this->record;
 
-        \Filament\Notifications\Notification::make()
+        Notification::make()
             ->success()
             ->title('Event berhasil dibuat!')
-            ->body("Event \"{$event->title}\" telah ditambahkan.")
+            ->body("Event \"$event->title\" telah ditambahkan.")
             ->actions([
                 Action::make('view')
                     ->label('Lihat Event')

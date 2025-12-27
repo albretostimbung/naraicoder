@@ -24,15 +24,20 @@ class EventServiceImpl implements EventService
         return $this->eventRepository->getAll();
     }
 
-    public function getAllPublishedEvents()
+    public function getAllOpenEvents()
     {
-        $criteria = ['status' => GeneralConstant::EVENT_STATUS_PUBLISHED];
-        return $this->eventRepository->getWithCriteria($criteria, 'desc');
+        $criteria = ['status' => GeneralConstant::EVENT_STATUS_OPEN];
+        return $this->eventRepository->getWithCriteria($criteria, 'desc', 3);
     }
 
     public function getEventById(int $id)
     {
         return $this->eventRepository->findById($id);
+    }
+
+    public function getEventBySlug(string $slug)
+    {
+        return $this->eventRepository->findBySlug($slug);
     }
 
     public function updateEvent(int $id, array $data)

@@ -12,6 +12,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Str;
 
 class EventForm
 {
@@ -32,7 +33,7 @@ class EventForm
                             ->reactive()
                             ->afterStateUpdated(function (TextInput $component, ?string $state, callable $set) {
                                 if ($state) {
-                                    $slug = \Str::slug($state);
+                                    $slug = Str::slug($state);
                                     $set('slug', $slug);
                                 }
                             }),
@@ -69,10 +70,9 @@ class EventForm
                                 ->required()
                                 ->default('draft')
                                 ->options([
-                                    GeneralConstant::EVENT_STATUS_DRAFT => 'Draft',
-                                    GeneralConstant::EVENT_STATUS_COMPLETED => 'Completed',
-                                    GeneralConstant::EVENT_STATUS_PUBLISHED => 'Published',
-                                    GeneralConstant::EVENT_STATUS_CANCELLED => 'Cancelled',
+                                    GeneralConstant::EVENT_STATUS_COMING_SOON => 'Coming Soon',
+                                    GeneralConstant::EVENT_STATUS_OPEN => 'Open',
+                                    GeneralConstant::EVENT_STATUS_CLOSED => 'Closed',
                                 ])
                                 ->native(false)
                                 ->helperText('Draft tidak akan tampil di public'),
@@ -104,11 +104,12 @@ class EventForm
                             ->label('Gambar Featured')
                             ->image()
                             ->imageEditor()
-                            ->disk('public')
+                            ->disk('cloudinary_events')
                             ->directory('events/featured')
+                            ->visibility('public')
                             ->maxSize(2048)
                             ->helperText('Rekomendasi: 1200x630px, Maks. 2MB')
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
                     ])
                     ->collapsible(),
 

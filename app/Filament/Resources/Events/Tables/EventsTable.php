@@ -37,16 +37,14 @@ class EventsTable
                 BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([
-                        'danger' => GeneralConstant::EVENT_STATUS_DRAFT,
-                        'info' => GeneralConstant::EVENT_STATUS_PUBLISHED,
-                        'success' => GeneralConstant::EVENT_STATUS_COMPLETED,
-                        'warning' => GeneralConstant::EVENT_STATUS_CANCELLED,
+                        'primary' => GeneralConstant::EVENT_STATUS_COMING_SOON,
+                        'success' => GeneralConstant::EVENT_STATUS_OPEN,
+                        'danger' => GeneralConstant::EVENT_STATUS_CLOSED,
                     ])
                     ->icons([
-                        'heroicon-o-pencil' => GeneralConstant::EVENT_STATUS_DRAFT,
-                        'heroicon-o-check-circle' => GeneralConstant::EVENT_STATUS_PUBLISHED,
-                        'heroicon-o-flag' => GeneralConstant::EVENT_STATUS_COMPLETED,
-                        'heroicon-o-x-circle' => GeneralConstant::EVENT_STATUS_CANCELLED,
+                        'heroicon-o-play' => GeneralConstant::EVENT_STATUS_COMING_SOON,
+                        'heroicon-o-check-circle' => GeneralConstant::EVENT_STATUS_OPEN,
+                        'heroicon-o-x-circle' => GeneralConstant::EVENT_STATUS_CLOSED,
                     ]),
 
                 TextColumn::make('start_at')
@@ -85,9 +83,9 @@ class EventsTable
                 SelectFilter::make('status')
                     ->label('Filter by Status')
                     ->options([
-                        GeneralConstant::EVENT_STATUS_DRAFT => 'Draft',
-                        GeneralConstant::EVENT_STATUS_COMPLETED => 'Completed',
-                        GeneralConstant::EVENT_STATUS_PUBLISHED => 'Published'
+                        GeneralConstant::EVENT_STATUS_COMING_SOON => 'Coming Soon',
+                        GeneralConstant::EVENT_STATUS_OPEN => 'Open',
+                        GeneralConstant::EVENT_STATUS_CLOSED => 'Closed',
                     ]),
             ])
             ->recordActions([
