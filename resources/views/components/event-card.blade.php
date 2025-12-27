@@ -5,7 +5,7 @@
         <img src="{{ asset('storage/events/' . $event->featured_image) }}"
              class="h-full w-full object-cover transition-transform duration-500 hover:scale-110">
 
-        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+        <div class="absolute top-4 right-4 {{ $event->event_type == 'OFFLINE' ? 'bg-red-600' : 'bg-blue-600' }} text-white px-3 py-1 rounded-full text-xs font-semibold">
             {{ $event->event_type }}
         </div>
     </div>

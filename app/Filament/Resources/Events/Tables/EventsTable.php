@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Events\Tables;
 
+use App\Constants\GeneralConstant;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -29,24 +30,23 @@ class EventsTable
                 BadgeColumn::make('event_type')
                     ->label('Type')
                     ->colors([
-                        'primary' => 'workshop',
-                        'success' => 'seminar',
-                        'warning' => 'webinar',
+                        'primary' => GeneralConstant::EVENT_TYPE_ONLINE,
+                        'secondary' => GeneralConstant::EVENT_TYPE_OFFLINE,
                     ]),
 
                 BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([
-                        'danger' => 'draft',
-                        'info' => 'published',
-                        'success' => 'completed',
-                        'warning' => 'cancelled',
+                        'danger' => GeneralConstant::EVENT_STATUS_DRAFT,
+                        'info' => GeneralConstant::EVENT_STATUS_PUBLISHED,
+                        'success' => GeneralConstant::EVENT_STATUS_COMPLETED,
+                        'warning' => GeneralConstant::EVENT_STATUS_CANCELLED,
                     ])
                     ->icons([
-                        'heroicon-o-pencil' => 'draft',
-                        'heroicon-o-check-circle' => 'published',
-                        'heroicon-o-flag' => 'completed',
-                        'heroicon-o-x-circle' => 'cancelled',
+                        'heroicon-o-pencil' => GeneralConstant::EVENT_STATUS_DRAFT,
+                        'heroicon-o-check-circle' => GeneralConstant::EVENT_STATUS_PUBLISHED,
+                        'heroicon-o-flag' => GeneralConstant::EVENT_STATUS_COMPLETED,
+                        'heroicon-o-x-circle' => GeneralConstant::EVENT_STATUS_CANCELLED,
                     ]),
 
                 TextColumn::make('start_at')
@@ -78,17 +78,16 @@ class EventsTable
                 SelectFilter::make('event_type')
                     ->label('Filter by Type')
                     ->options([
-                        'workshop' => 'Workshop',
-                        'seminar' => 'Seminar',
-                        'webinar' => 'Webinar',
+                        GeneralConstant::EVENT_TYPE_ONLINE => 'Online',
+                        GeneralConstant::EVENT_TYPE_OFFLINE => 'Offline',
                     ]),
 
                 SelectFilter::make('status')
                     ->label('Filter by Status')
                     ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Published',
-                        'completed' => 'Completed',
+                        GeneralConstant::EVENT_STATUS_DRAFT => 'Draft',
+                        GeneralConstant::EVENT_STATUS_COMPLETED => 'Completed',
+                        GeneralConstant::EVENT_STATUS_PUBLISHED => 'Published'
                     ]),
             ])
             ->recordActions([
