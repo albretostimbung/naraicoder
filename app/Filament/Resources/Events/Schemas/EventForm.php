@@ -94,6 +94,23 @@ class EventForm
                                 ->after('start_at')
                                 ->helperText('Kapan event akan berakhir?'),
                         ]),
+
+                        Grid::make(2)->schema([
+                            DateTimePicker::make('registration_open_at')
+                                ->label('Waktu Pendaftaran Dibuka')
+                                ->required()
+                                ->native(false)
+                                ->seconds(false)
+                                ->helperText('Kapan pendaftaran untuk event dibuka?'),
+
+                            DateTimePicker::make('registration_close_at')
+                                ->label('Waktu Pendaftaran Ditutup')
+                                ->required()
+                                ->native(false)
+                                ->seconds(false)
+                                ->after('registration_open_at')
+                                ->helperText('Kapan pendaftaran untuk event ditutup?'),
+                        ]),
                     ]),
 
                 Section::make('Media')

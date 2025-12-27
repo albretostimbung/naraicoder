@@ -13,9 +13,9 @@
 
         <div class="hidden md:flex gap-6 text-sm font-medium">
             <a href="{{ route('home') }}">Beranda</a>
-            <a href="#" data-scroll="about">Tentang</a>
-            <a href="#" data-scroll="events">Event</a>
-            <a href="#" data-scroll="join">Gabung</a>
+            <a href="{{ route('home') }}">Tentang</a>
+            <a href="{{ route('home') }}">Event</a>
+            <a href="{{ route('home') }}">Gabung</a>
         </div>
 
         <!-- Auth Section -->

@@ -15,6 +15,9 @@ Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])
 
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
 
+Route::post('/admin/logout', LogoutController::class)
+    ->name('filament.admin.auth.logout');
+
 Route::middleware('auth')->group(function () {
 // Logout Route
     Route::post('/logout', LogoutController::class)
