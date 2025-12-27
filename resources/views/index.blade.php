@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Carbon\Carbon; @endphp
+    <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -109,7 +110,7 @@
 
 <!-- HERO -->
 <section id="home"
-    class="pt-28 pb-24 bg-gradient-to-br from-blue-700 via-blue-600 to-purple-600 text-white gradient-animate overflow-hidden relative">
+         class="pt-28 pb-24 bg-gradient-to-br from-blue-700 via-blue-600 to-purple-600 text-white gradient-animate overflow-hidden relative">
     <!-- Decorative circles -->
     <div class="absolute top-20 right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
     <div class="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
@@ -243,98 +244,39 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            <!-- Event Card 1 -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="zoom-in"
-                 data-aos-delay="100">
-                <div class="relative overflow-hidden h-56">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop"
-                         class="h-full w-full object-cover transform hover:scale-110 transition-transform duration-500">
-                    <div
-                        class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        ONLINE
+            @foreach($events as $event)
+                <!-- Event Card 1 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="zoom-in"
+                     data-aos-delay="100">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="{{ asset('storage/events/' . $event->featured_image) }}" alt="Event Image"
+                             class="h-full w-full object-cover transform hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                            ONLINE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                            <span>📅 {{ Carbon::parse($event->event_date)->translatedFormat('d M Y') }}</span>
+                            <span>•</span>
+                            <span>⏰ {{ Carbon::parse($event->event_time)->format('H:i') }} WIB</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2">
+                            {{ $event->title }}
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            {{ Str::limit($event->description, 100, '...') }}
+                        </p>
+                        <a href="#"
+                           class="inline-flex items-center text-blue-600 font-semibold hover:gap-3 gap-2 transition-all">
+                            Gabung Sekarang
+                            <span>→</span>
+                        </a>
                     </div>
                 </div>
-                <div class="p-6">
-                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                        <span>📅 20 Jan 2024</span>
-                        <span>•</span>
-                        <span>⏰ 19:00 WITA</span>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">
-                        Laravel for Beginner
-                    </h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        Belajar Laravel dari nol bersama mentor berpengalaman dan praktik langsung.
-                    </p>
-                    <a href="#"
-                       class="inline-flex items-center text-blue-600 font-semibold hover:gap-3 gap-2 transition-all">
-                        Gabung Sekarang
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
+            @endforeach
 
-            <!-- Event Card 2 -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="zoom-in"
-                 data-aos-delay="200">
-                <div class="relative overflow-hidden h-56">
-                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
-                         class="h-full w-full object-cover transform hover:scale-110 transition-transform duration-500">
-                    <div
-                        class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        OFFLINE
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                        <span>📅 25 Jan 2024</span>
-                        <span>•</span>
-                        <span>📍 Palangka Raya</span>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">
-                        Tech Meetup Palangka Raya
-                    </h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        Networking dan sharing bersama komunitas lokal di venue nyaman.
-                    </p>
-                    <a href="#"
-                       class="inline-flex items-center text-blue-600 font-semibold hover:gap-3 gap-2 transition-all">
-                        Daftar Sekarang
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Event Card 3 -->
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="zoom-in"
-                 data-aos-delay="300">
-                <div class="relative overflow-hidden h-56">
-                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop"
-                         class="h-full w-full object-cover transform hover:scale-110 transition-transform duration-500">
-                    <div
-                        class="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                        HYBRID
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-                        <span>📅 1 Feb 2024</span>
-                        <span>•</span>
-                        <span>🌐 Online + Offline</span>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">
-                        Public Speaking for Tech
-                    </h3>
-                    <p class="text-sm text-gray-600 mb-4">
-                        Offline venue + online streaming untuk jangkauan lebih luas.
-                    </p>
-                    <a href="#"
-                       class="inline-flex items-center text-blue-600 font-semibold hover:gap-3 gap-2 transition-all">
-                        Daftar Sekarang
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 </section>
