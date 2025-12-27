@@ -1,4 +1,4 @@
-<x-layouts.landing title="NaraiCoder – Komunitas IT">
+<x-layouts.landing title="Komunitas IT Kalimantan Tengah | {{ config('app.name') }}">
 
     <section id="home"
              class="pt-28 pb-24 bg-gradient-to-br from-blue-700 via-blue-600 to-purple-600 text-white gradient-animate overflow-hidden relative">
@@ -25,10 +25,17 @@
                        class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all transform hover:scale-105">
                         Lihat Event
                     </a>
-                    <a href="#" data-scroll="join"
-                       class="border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all transform hover:scale-105">
-                        Gabung Sekarang
-                    </a>
+                    @guest
+                        <a href="#" data-scroll="join"
+                           class="border-2 border-white px-8 py-4 rounded-lg font-semibold">
+                            Gabung Sekarang
+                        </a>
+                    @else
+                        <a href="{{ route('events.index') }}"
+                           class="border-2 border-white px-8 py-4 rounded-lg font-semibold">
+                            Lihat Event Saya
+                        </a>
+                    @endguest
                 </div>
 
                 <div class="flex gap-8 mt-12">
@@ -151,20 +158,39 @@
 
         <div class="relative z-10" data-aos="zoom-in">
             <div class="max-w-3xl mx-auto px-6">
-                <div class="inline-block mb-6 px-6 py-2 bg-white/20 rounded-full text-sm backdrop-blur-sm">
-                    ✨ Bergabunglah Bersama 300+ Member
-                </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
-                    Siap Bergabung dengan NaraiCoder?
-                </h2>
-                <p class="text-blue-100 mb-10 text-lg">
-                    Daftar sekarang dan ikut event serta komunitas kami. Gratis dan terbuka untuk semua!
-                </p>
+                @guest
+                    <div class="inline-block mb-6 px-6 py-2 bg-white/20 rounded-full text-sm backdrop-blur-sm">
+                        ✨ Bergabunglah Bersama 300+ Member
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+                        Siap Bergabung dengan NaraiCoder?
+                    </h2>
+                    <p class="text-blue-100 mb-10 text-lg">
+                        Daftar sekarang dan ikut event serta komunitas kami. Gratis dan terbuka untuk semua!
+                    </p>
 
-                <a href="{{ route('google.login') }}"
-                   class="inline-block bg-white text-blue-600 px-10 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg">
-                    <span class="mr-2">🚀</span> Daftar Sekarang
-                </a>
+                    <a href="{{ route('google.login') }}"
+                       class="inline-block bg-white text-blue-600 px-10 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg">
+                        <span class="mr-2">🚀</span> Daftar Sekarang
+                    </a>
+                @else
+                    <h2>Selamat Datang Kembali 👋</h2>
+                    <p class="text-blue-100 mb-10">
+                        Lihat event terbaru dan lanjutkan perjalanan belajarmu bersama komunitas.
+                    </p>
+
+                    <div class="flex justify-center gap-4">
+                        <a href="{{ route('events.index') }}"
+                           class="bg-white text-blue-600 px-10 py-5 rounded-xl font-bold">
+                            🎫 Lihat Event
+                        </a>
+
+                        <a href="{{ route('home') }}"
+                           class="border-2 border-white px-10 py-5 rounded-xl font-bold">
+                            📌 Event Saya
+                        </a>
+                    </div>
+                @endguest
 
                 <div class="flex justify-center gap-8 mt-12">
                     <div class="text-center">
