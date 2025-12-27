@@ -180,12 +180,12 @@
                     </p>
 
                     <div class="flex justify-center gap-4">
-                        <a href="{{ route('my-events.index') }}"
+                        <a href="#" data-scroll="events"
                            class="bg-white text-blue-600 px-10 py-5 rounded-xl font-bold">
                             🎫 Lihat Event
                         </a>
 
-                        <a href="{{ route('home') }}"
+                        <a href="{{ route('my-events.index') }}"
                            class="border-2 border-white px-10 py-5 rounded-xl font-bold">
                             📌 Event Saya
                         </a>
