@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Events;
 
+use App\Constants\GeneralConstant;
 use App\Filament\Resources\Events\Pages\CreateEvent;
 use App\Filament\Resources\Events\Pages\EditEvent;
 use App\Filament\Resources\Events\Pages\ListEvents;
@@ -32,7 +33,7 @@ class EventResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('status', 'published')->count();
+        return static::getModel()::where('status', GeneralConstant::EVENT_STATUS_PUBLISHED)->count();
     }
 
     protected static string|\Illuminate\Contracts\Support\Htmlable|null $navigationBadgeTooltip = 'Total events yang sedang aktif';

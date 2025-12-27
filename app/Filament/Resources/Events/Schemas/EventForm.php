@@ -104,6 +104,8 @@ class EventForm
                             ->label('Gambar Featured')
                             ->image()
                             ->imageEditor()
+                            ->disk('public')
+                            ->directory('events/featured')
                             ->maxSize(2048)
                             ->helperText('Rekomendasi: 1200x630px, Maks. 2MB')
                             ->columnSpanFull(),
