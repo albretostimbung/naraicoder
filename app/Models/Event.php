@@ -14,6 +14,11 @@ class Event extends Model
         'end_at' => 'datetime',
     ];
 
+    public function isUpcoming(): bool
+    {
+        return $this->date_start->isFuture();
+    }
+
     public function isOpen(): bool
     {
         return $this->status === 'OPEN' &&

@@ -1,5 +1,5 @@
 @php use Carbon\Carbon; @endphp
-<x-layouts.landing :title="$event->title">
+<x-layouts.landing :title="$event->title . ' | ' . config('app.name')">
 
     {{-- HERO SECTION --}}
     <section class="pt-20 pb-8 bg-gradient-to-b from-gray-50 to-white">
@@ -197,10 +197,13 @@
                                         {{-- Registration Form --}}
                                         @if(auth()->check() && $event->registrations->where('user_id', auth()->id())->isNotEmpty())
                                             <div class="text-center py-6">
-                                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor"
+                                                <div
+                                                    class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                    <svg class="w-8 h-8 text-green-600" fill="none"
+                                                         stroke="currentColor"
                                                          viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2"
                                                               d="M9 12l2 2l4-4"/>
                                                     </svg>
                                                 </div>
@@ -212,7 +215,7 @@
                                                     We’ll notify you before the event starts.
                                                 </p>
 
-                                                <a href="{{ route('home') }}"
+                                                <a href="{{ route('my-events.index') }}"
                                                    class="inline-block text-sm font-semibold text-blue-600 hover:underline">
                                                     View My Events →
                                                 </a>
