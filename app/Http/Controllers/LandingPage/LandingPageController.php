@@ -17,7 +17,7 @@ class LandingPageController extends Controller
 
     public function index()
     {
-        $events = $this->eventService->getAllPublishedEvents();
+        $events = $this->eventService->getAllOpenEvents();
 
         return view('landing.index', compact('events'));
     }

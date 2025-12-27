@@ -9,6 +9,10 @@ class Event extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'start_at' => 'datetime',
+    ];
+
     public function onlineDetail()
     {
         return $this->hasOne(EventOnlineDetail::class);

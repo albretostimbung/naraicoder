@@ -23,7 +23,7 @@ class EventRepository
         return $this->model->all();
     }
 
-    public function getWithCriteria(array $criteria, String $order = 'asc')
+    public function getWithCriteria(array $criteria, String $order = 'asc', Int $limit = null)
     {
         $query = $this->model->newQuery();
 
@@ -31,12 +31,24 @@ class EventRepository
             $query->where($field, $value);
         }
 
-        return $query->orderBy('created_at', $order)->get();
+        $query->orderBy('created_at', $order);
+
+        if ($limit) {
+            $query->limit($limit);
+        }
+
+        return $query->get();
     }
 
     public function findById(int $id)
     {
         return $this->model->find($id);
+    }
+
+
+    public function findBySlug(string $slug)
+    {
+        return $this->model->where('slug', $slug)->first();
     }
 
     public function update(int $id, array $data)

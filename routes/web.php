@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\Events\EventController;
 use App\Http\Controllers\LandingPage\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,3 +12,7 @@ Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])
     ->name('google.login');
 
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
+
+
+// events
+Route::resource('events', EventController::class);
