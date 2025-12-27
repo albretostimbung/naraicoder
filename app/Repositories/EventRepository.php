@@ -23,6 +23,17 @@ class EventRepository
         return $this->model->all();
     }
 
+    public function getWithCriteria(array $criteria, String $order = 'asc')
+    {
+        $query = $this->model->newQuery();
+
+        foreach ($criteria as $field => $value) {
+            $query->where($field, $value);
+        }
+
+        return $query->orderBy('created_at', $order)->get();
+    }
+
     public function findById(int $id)
     {
         return $this->model->find($id);
