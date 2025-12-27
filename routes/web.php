@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleAuthController;
-use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\LandingPage\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [FrontendController::class, 'index'])
+Route::get('/', [LandingPageController::class, 'index'])
     ->name('home');
 
 Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])
