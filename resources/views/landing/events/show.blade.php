@@ -2,14 +2,14 @@
 <x-layouts.landing :title="$event->title . ' | ' . config('app.name')">
 
     {{-- HERO SECTION --}}
-    <section class="pt-20 pb-8 bg-gradient-to-b from-gray-50 to-white">
+    <section class="pt-20 pb-8 bg-gradient-to-b from-gray-50 to-white" data-aos="fade-up">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
             {{-- Breadcrumb --}}
-            <nav class="mb-6 text-sm">
+            <nav class="mb-6 text-sm" data-aos="fade-down">
                 <a href="{{ route('home') }}" class="text-gray-500 hover:text-gray-700">Beranda</a>
                 <span class="mx-2 text-gray-400">/</span>
-                <a href="{{ route('events.index') }}" class="text-gray-500 hover:text-gray-700">Events</a>
+                <a href="{{ route('home') }}" class="text-gray-500 hover:text-gray-700">Events</a>
                 <span class="mx-2 text-gray-400">/</span>
                 <span class="text-gray-900 font-medium">{{ Str::limit($event->title, 40) }}</span>
             </nav>
@@ -20,7 +20,7 @@
                 <div class="lg:col-span-2">
 
                     {{-- Featured Image --}}
-                    <div class="relative overflow-hidden rounded-2xl shadow-xl mb-6 group">
+                    <div class="relative overflow-hidden rounded-2xl shadow-xl mb-6 group" data-aos="zoom-in">
                         <img
                             src="{{ $event->featured_image ? cloudinary_url($event->featured_image) : 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d' }}"
                             alt="{{ $event->title }}"
@@ -33,11 +33,11 @@
                         {{-- Status Badge --}}
                         <div class="absolute top-4 left-4">
                             <span class="px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm
-                                @if ($event->status === 'OPEN') bg-green-500/90 text-white
-                                @elseif ($event->status === 'COMING_SOON') bg-yellow-500/90 text-white
-                                @elseif ($event->status === 'CLOSED') bg-red-500/90 text-white
+                                @if ($event->registration_status === 'OPEN') bg-green-500/90 text-white
+                                @elseif ($event->registration_status === 'COMING_SOON') bg-yellow-500/90 text-white
+                                @elseif ($event->registration_status === 'CLOSED') bg-red-500/90 text-white
                                 @endif">
-                                ● {{ str_replace('_', ' ', $event->status) }}
+                                ● {{ str_replace('_', ' ', $event->registration_status) }}
                             </span>
                         </div>
 
@@ -45,7 +45,7 @@
                         <div class="absolute top-4 right-4">
                             <span class="px-4 py-2 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm
                             @if ($event->event_type === 'ONLINE') bg-blue-500/90 text-white
-                            @elseif ($event->event_type === 'OFFLINE') bg-green-500/90 text-white
+                            @elseif ($event->event_type === 'OFFLINE') bg-red-500/90 text-white
                             @endif">
                                 {{ $event->event_type }}
                             </span>
@@ -53,7 +53,7 @@
                     </div>
 
                     {{-- Title --}}
-                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+                    <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight" data-aos="fade-up">
                         {{ $event->title }}
                     </h1>
 
@@ -61,7 +61,8 @@
                     <div class="grid sm:grid-cols-2 gap-4 mb-6">
 
                         {{-- Date Start --}}
-                        <div class="flex items-start space-x-3 p-4 bg-blue-50 rounded-xl border border-blue-100">
+                        <div class="flex items-start space-x-3 p-4 bg-blue-50 rounded-xl border border-blue-100"
+                             data-aos="fade-right" data-aos-delay="100">
                             <div
                                 class="flex-shrink-0 w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
                                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +82,8 @@
                         </div>
 
                         {{-- Date End --}}
-                        <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-xl border border-red-100">
+                        <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-xl border border-red-100"
+                             data-aos="fade-left" data-aos-delay="200">
                             <div class="flex-shrink-0 w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center">
                                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -102,7 +104,7 @@
                     </div>
 
                     {{-- Description --}}
-                    <div class="bg-white rounded-xl border p-6 mb-6">
+                    <div class="bg-white rounded-xl border p-6 mb-6" data-aos="fade-up" data-aos-delay="300">
                         <h2 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
                             <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor"
                                  viewBox="0 0 24 24">
@@ -120,7 +122,7 @@
 
                 {{-- RIGHT: ACTION CARD (STICKY) --}}
                 <div class="lg:col-span-1">
-                    <div class="lg:sticky lg:top-24">
+                    <div class="lg:sticky lg:top-24" data-aos="fade-left">
 
                         @if (session('success'))
                             <x-ui.alert
@@ -170,7 +172,7 @@
                                     </div>
                                 </div>
 
-                                @if ($event->status !== 'OPEN')
+                                @if ($event->registration_status !== 'OPEN')
 
                                     {{-- Event Not Open --}}
                                     <div class="text-center py-8">
@@ -183,10 +185,10 @@
                                             </svg>
                                         </div>
                                         <p class="text-gray-700 font-semibold mb-1">
-                                            {{ $event->status === 'COMING_SOON' ? 'Coming Soon' : 'Registration Closed' }}
+                                            {{ $event->registration_status === 'COMING_SOON' ? 'Coming Soon' : 'Registration Closed' }}
                                         </p>
                                         <p class="text-sm text-gray-500">
-                                            {{ $event->status === 'COMING_SOON' ? 'Stay tuned for registration opening' : 'This event has ended' }}
+                                            {{ $event->registration_status === 'COMING_SOON' ? 'Stay tuned for registration opening' : 'This event has ended' }}
                                         </p>
                                     </div>
 

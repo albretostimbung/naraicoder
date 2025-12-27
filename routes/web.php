@@ -27,7 +27,6 @@ Route::middleware('auth')->group(function () {
 
 // Event Routes
 Route::prefix('events')->group(function () {
-    Route::get('/', [EventController::class, 'index'])->name('events.index');
     Route::get('/{event:slug}', [EventController::class, 'show'])->name('events.show');
 
     Route::post('/{event:slug}/register', [EventController::class, 'register'])->middleware('auth')->name('events.register');

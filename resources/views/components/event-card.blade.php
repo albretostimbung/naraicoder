@@ -8,7 +8,7 @@
             alt="{{ $event->title }}"
             class="h-full w-full object-cover transition-transform duration-500 hover:scale-110">
         <div
-            class="absolute top-4 right-4 {{ $event->event_type == 'OFFLINE' ? 'bg-red-600' : 'bg-blue-600' }} text-white px-3 py-1 rounded-full text-xs font-semibold">
+            class="absolute top-4 right-4 {{ $event->event_type == 'OFFLINE' ? 'bg-red-600' : ($event->event_type == 'ONLINE' ? 'bg-blue-600' : 'bg-purple-600') }} text-white px-3 py-1 rounded-full text-xs font-semibold">
             {{ $event->event_type }}
         </div>
     </div>

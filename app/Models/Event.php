@@ -14,15 +14,48 @@ class Event extends Model
         'end_at' => 'datetime',
     ];
 
-    public function isUpcoming(): bool
+    public function getRegistrationStatusAttribute(): string
     {
-        return $this->date_start->isFuture();
+        if ($this->status !== 'PUBLISHED') {
+            return 'CLOSED';
+        }
+
+        if ($this->registration_open_at && now()->lt($this->registration_open_at)) {
+            return 'COMING_SOON';
+        }
+
+        if ($this->registration_close_at && now()->gt($this->registration_close_at)) {
+            return 'CLOSED';
+        }
+
+        return 'OPEN';
     }
 
-    public function isOpen(): bool
+    public function getLifecycleStatusAttribute(): string
     {
-        return $this->status === 'OPEN' &&
-               now()->between($this->start_at, $this->end_at);
+        if ($this->status === 'CANCELLED') {
+            return 'CANCELLED';
+        }
+
+        if (now()->lt($this->start_at)) {
+            return 'UPCOMING';
+        }
+
+        if (now()->between($this->start_at, $this->end_at)) {
+            return 'ONGOING';
+        }
+
+        return 'FINISHED';
+    }
+
+    public function isRegistrationOpen(): bool
+    {
+        return $this->registration_status === 'OPEN';
+    }
+
+    public function hasStarted(): bool
+    {
+        return now()->gte($this->start_at);
     }
 
     public function onlineDetail()

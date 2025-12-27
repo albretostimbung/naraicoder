@@ -33,7 +33,7 @@ class EventResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('status', GeneralConstant::EVENT_STATUS_OPEN)->count();
+        return static::getModel()::where('status', GeneralConstant::EVENT_STATUS_PUBLISHED)->count();
     }
 
     protected static string|\Illuminate\Contracts\Support\Htmlable|null $navigationBadgeTooltip = 'Total events yang sedang aktif';
