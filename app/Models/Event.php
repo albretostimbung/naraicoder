@@ -11,7 +11,14 @@ class Event extends Model
 
     protected $casts = [
         'start_at' => 'datetime',
+        'end_at' => 'datetime',
     ];
+
+    public function isOpen(): bool
+    {
+        return $this->status === 'OPEN' &&
+               now()->between($this->start_at, $this->end_at);
+    }
 
     public function onlineDetail()
     {
