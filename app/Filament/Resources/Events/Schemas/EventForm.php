@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Events\Schemas;
 
+use App\Constants\GeneralConstant;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
@@ -57,10 +58,8 @@ class EventForm
                                 ->label('Tipe Event')
                                 ->required()
                                 ->options([
-                                    'seminar' => 'Seminar',
-                                    'workshop' => 'Workshop',
-                                    'conference' => 'Conference',
-                                    'webinar' => 'Webinar',
+                                    GeneralConstant::EVENT_TYPE_ONLINE => 'Online',
+                                    GeneralConstant::EVENT_TYPE_OFFLINE => 'Offline',
                                 ])
                                 ->native(false)
                                 ->helperText('Pilih kategori yang sesuai'),
@@ -70,10 +69,10 @@ class EventForm
                                 ->required()
                                 ->default('draft')
                                 ->options([
-                                    'draft' => 'Draft',
-                                    'completed' => 'Completed',
-                                    'published' => 'Published',
-                                    'cancelled' => 'Cancelled',
+                                    GeneralConstant::EVENT_STATUS_DRAFT => 'Draft',
+                                    GeneralConstant::EVENT_STATUS_COMPLETED => 'Completed',
+                                    GeneralConstant::EVENT_STATUS_PUBLISHED => 'Published',
+                                    GeneralConstant::EVENT_STATUS_CANCELLED => 'Cancelled',
                                 ])
                                 ->native(false)
                                 ->helperText('Draft tidak akan tampil di public'),
