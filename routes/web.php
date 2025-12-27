@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [FrontendController::class, 'index'])
+    ->name('home');
 
 Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])
     ->name('google.login');
