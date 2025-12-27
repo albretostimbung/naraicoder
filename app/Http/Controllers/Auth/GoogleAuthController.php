@@ -9,8 +9,12 @@ use Laravel\Socialite\Socialite;
 
 class GoogleAuthController extends Controller
 {
-    public function redirect()
+    public function redirect(Request $request)
     {
+        if ($request->has('redirect')) {
+            session(['url.intended' => $request->redirect]);
+        }
+
         return Socialite::driver('google')->redirect();
     }
 
@@ -38,6 +42,6 @@ class GoogleAuthController extends Controller
             return redirect('/admin');
         }
 
-        return redirect('/'); // nanti ke halaman event
+        return redirect()->intended('/');
     }
 }

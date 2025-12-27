@@ -31,4 +31,4 @@
             <span>→</span>
         </span>
     </div>
-</>
+</a>

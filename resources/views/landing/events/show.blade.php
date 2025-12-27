@@ -7,7 +7,7 @@
 
             {{-- Breadcrumb --}}
             <nav class="mb-6 text-sm">
-                <a href="{{ route('home') }}" class="text-gray-500 hover:text-gray-700">Home</a>
+                <a href="{{ route('home') }}" class="text-gray-500 hover:text-gray-700">Beranda</a>
                 <span class="mx-2 text-gray-400">/</span>
                 <a href="{{ route('events.index') }}" class="text-gray-500 hover:text-gray-700">Events</a>
                 <span class="mx-2 text-gray-400">/</span>
@@ -22,7 +22,7 @@
                     {{-- Featured Image --}}
                     <div class="relative overflow-hidden rounded-2xl shadow-xl mb-6 group">
                         <img
-                            src="{{ $event->featured_image ? asset('storage/' . $event->featured_image) : 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d' }}"
+                            src="{{ $event->featured_image ? cloudinary_url($event->featured_image) : 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d' }}"
                             alt="{{ $event->title }}"
                             class="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-105"
                         >
@@ -33,11 +33,10 @@
                         {{-- Status Badge --}}
                         <div class="absolute top-4 left-4">
                             <span class="px-4 py-2 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm
-                                @class([
-                                    'bg-green-500/90 text-white' => $event->status === 'OPEN',
-                                    'bg-yellow-500/90 text-white' => $event->status === 'COMING_SOON',
-                                    'bg-red-500/90 text-white' => $event->status === 'CLOSED',
-                                ])">
+                                @if ($event->status === 'OPEN') bg-green-500/90 text-white
+                                @elseif ($event->status === 'COMING_SOON') bg-yellow-500/90 text-white
+                                @elseif ($event->status === 'CLOSED') bg-red-500/90 text-white
+                                @endif">
                                 ● {{ str_replace('_', ' ', $event->status) }}
                             </span>
                         </div>
@@ -45,11 +44,9 @@
                         {{-- Event Type Badge --}}
                         <div class="absolute top-4 right-4">
                             <span class="px-4 py-2 rounded-full text-xs font-semibold shadow-lg backdrop-blur-sm
-                                @class([
-                                    'bg-blue-500/90 text-white' => $event->event_type === 'ONLINE',
-                                    'bg-green-500/90 text-white' => $event->event_type === 'OFFLINE',
-                                    'bg-purple-500/90 text-white' => $event->event_type === 'HYBRID',
-                                ])">
+                            @if ($event->event_type === 'ONLINE') bg-blue-500/90 text-white
+                            @elseif ($event->event_type === 'OFFLINE') bg-green-500/90 text-white
+                            @endif">
                                 {{ $event->event_type }}
                             </span>
                         </div>
@@ -75,10 +72,10 @@
                             <div>
                                 <p class="text-xs text-gray-600 font-medium mb-1">Start Date</p>
                                 <p class="text-sm font-bold text-gray-900">
-                                    {{ Carbon::parse($event->date_start)->translatedFormat('d M Y') }}
+                                    {{ $event->start_at->format('d M Y') }}
                                 </p>
                                 <p class="text-xs text-gray-600">
-                                    {{ Carbon::parse($event->date_start)->translatedFormat('H:i') }}
+                                    {{ $event->start_at->format('H:i') }} WIB
                                 </p>
                             </div>
                         </div>
@@ -94,10 +91,10 @@
                             <div>
                                 <p class="text-xs text-gray-600 font-medium mb-1">End Date</p>
                                 <p class="text-sm font-bold text-gray-900">
-                                    {{ Carbon::parse($event->date_end)->translatedFormat('d M Y') }}
+                                    {{ $event->end_at->format('d M Y') }}
                                 </p>
                                 <p class="text-xs text-gray-600">
-                                    {{ Carbon::parse($event->date_end)->translatedFormat('H:i') }}
+                                    {{ $event->end_at->format('H:i') }} WIB
                                 </p>
                             </div>
                         </div>
@@ -125,6 +122,25 @@
                 <div class="lg:col-span-1">
                     <div class="lg:sticky lg:top-24">
 
+                        @if (session('success'))
+                            <x-ui.alert
+                                type="success"
+                                title="Registration successful"
+                                :message="session('success')"
+                                :autohide="4000"
+                            />
+                        @endif
+
+                        @if (session('error'))
+                            <x-ui.alert
+                                type="error"
+                                title="Registration failed"
+                                :message="session('error')"
+                                :autohide="4000"
+                            />
+                        @endif
+
+
                         {{-- Registration Card --}}
                         <div class="bg-white rounded-2xl shadow-xl border-2 border-gray-100 overflow-hidden">
 
@@ -149,7 +165,7 @@
                                         </div>
                                         <div>
                                             <p class="text-xs text-gray-500">Available Seats</p>
-                                            <p class="text-xl font-bold text-gray-900">{{ $event->quota }}</p>
+                                            <p class="text-xl font-bold text-gray-900">Unlimited</p>
                                         </div>
                                     </div>
                                 </div>
@@ -179,21 +195,45 @@
                                     @auth
 
                                         {{-- Registration Form --}}
-                                        <form method="POST" action="{{ route('home', $event) }}">
-                                            @csrf
+                                        @if(auth()->check() && $event->registrations->where('user_id', auth()->id())->isNotEmpty())
+                                            <div class="text-center py-6">
+                                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor"
+                                                         viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                              d="M9 12l2 2l4-4"/>
+                                                    </svg>
+                                                </div>
 
-                                            <button type="submit"
-                                                    class="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                                                Register Now
-                                            </button>
-                                        </form>
+                                                <p class="font-semibold text-gray-900 mb-1">
+                                                    You’re registered
+                                                </p>
+                                                <p class="text-sm text-gray-500 mb-4">
+                                                    We’ll notify you before the event starts.
+                                                </p>
+
+                                                <a href="{{ route('home') }}"
+                                                   class="inline-block text-sm font-semibold text-blue-600 hover:underline">
+                                                    View My Events →
+                                                </a>
+                                            </div>
+
+                                        @else
+                                            <form method="POST" action="{{ route('events.register', $event) }}">
+                                                @csrf
+                                                <button type="submit"
+                                                        class="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                    Register Now
+                                                </button>
+                                            </form>
+                                        @endif
 
                                     @else
 
                                         {{-- Login Required --}}
                                         <div class="text-center py-4">
                                             <p class="text-sm text-gray-600 mb-4">Please login to register</p>
-                                            <a href="{{ route('home') }}"
+                                            <a href="{{ route('google.login', ['redirect' => url()->current()]) }}"
                                                class="flex items-center justify-center w-full py-4 bg-white border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow hover:shadow-md">
                                                 <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24">
                                                     <path fill="#4285F4"

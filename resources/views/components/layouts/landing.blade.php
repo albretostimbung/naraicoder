@@ -15,9 +15,11 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- Alpine.js -->
+    @include('partials.alpine')
+
     <style>
         body { font-family: 'Poppins', sans-serif; }
-        /* SEMUA STYLE DARI FILE KAMU PINDAHKAN KE SINI */
     </style>
 
     @stack('styles')

@@ -13,6 +13,10 @@ Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])
 
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
 
+// Event Routes
+Route::prefix('events')->group(function () {
+    Route::get('/', [EventController::class, 'index'])->name('events.index');
+    Route::get('/{event:slug}', [EventController::class, 'show'])->name('events.show');
 
-// events
-Route::resource('events', EventController::class);
+    Route::post('/{event:slug}/register', [EventController::class, 'register'])->middleware('auth')->name('events.register');
+});
