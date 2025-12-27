@@ -2,20 +2,14 @@
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
         <a href="{{ route('home') }}" class="flex items-center gap-3">
-            <div
-                class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <span class="text-white font-bold text-xl">N</span>
-            </div>
-            <span class="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                NaraiCoder
-            </span>
+            <img src="{{ asset('assets/images/logo.png') }}" alt="NaraiCoder Logo" class="w-32">
         </a>
 
         <div class="hidden md:flex gap-6 text-sm font-medium">
-            <a href="{{ route('home') }}">Beranda</a>
-            <a href="{{ route('home') }}">Tentang</a>
-            <a href="{{ route('home') }}">Event</a>
-            <a href="{{ route('home') }}">Gabung</a>
+            <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors">Beranda</a>
+            <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors">Tentang</a>
+            <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors">Event</a>
+            <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors">Gabung</a>
         </div>
 
         <!-- Auth Section -->
@@ -52,7 +46,7 @@
             </div>
         @else
             <a href="{{ route('google.login') }}"
-               class="px-4 py-2 text-sm rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+               class="px-4 py-2 text-sm rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:from-blue-700 hover:to-purple-700 transition">
                 Masuk / Daftar
             </a>
         @endauth
