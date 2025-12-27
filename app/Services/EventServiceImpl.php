@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Constants\GeneralConstant;
 use App\Repositories\EventRepository;
 
 class EventServiceImpl implements EventService
@@ -25,7 +26,7 @@ class EventServiceImpl implements EventService
 
     public function getAllPublishedEvents()
     {
-        $criteria = ['status' => 'published'];
+        $criteria = ['status' => GeneralConstant::EVENT_STATUS_PUBLISHED];
         return $this->eventRepository->getWithCriteria($criteria, 'desc');
     }
 
