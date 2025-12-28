@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Constants\GeneralConstant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Event extends Model
@@ -16,7 +18,7 @@ class Event extends Model
 
     public function getRegistrationStatusAttribute(): string
     {
-        if ($this->status !== 'PUBLISHED') {
+        if ($this->status !== GeneralConstant::EVENT_STATUS_PUBLISHED) {
             return 'CLOSED';
         }
 
@@ -73,7 +75,7 @@ class Event extends Model
         return $this->hasMany(EventRegistration::class);
     }
 
-    public function creator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }

@@ -20,6 +20,9 @@
 
     <style>
         body { font-family: 'Poppins', sans-serif; }
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 
     @stack('styles')

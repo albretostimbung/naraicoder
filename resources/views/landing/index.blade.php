@@ -23,13 +23,13 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4">
-                    <a href="#" data-scroll="events"
-                       class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all transform hover:scale-105">
+                    <a href="#events"
+                       class="scroll-smooth bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all transform hover:scale-105">
                         Lihat Event
                     </a>
                     @guest
-                        <a href="#" data-scroll="join"
-                           class="border-2 border-white px-8 py-4 rounded-lg font-semibold">
+                        <a href="#join"
+                           class="scroll-smooth border-2 border-white px-8 py-4 rounded-lg font-semibold">
                             Gabung Sekarang
                         </a>
                     @else
@@ -196,8 +196,8 @@
                     </p>
 
                     <div class="flex justify-center gap-4">
-                        <a href="#" data-scroll="events"
-                           class="inline-flex items-center gap-2 bg-white text-blue-600 px-10 py-5 rounded-xl font-bold">
+                        <a href="#events"
+                           class="scroll-smooth inline-flex items-center gap-2 bg-white text-blue-600 px-10 py-5 rounded-xl font-bold">
                             <x-lucide-icon name="ticket" class="w-6 h-6 inline-block"/>
                             <span>Lihat Event</span>
                         </a>
