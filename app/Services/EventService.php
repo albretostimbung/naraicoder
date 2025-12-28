@@ -11,4 +11,5 @@ interface EventService
     public function getEventBySlug(string $slug);
     public function updateEvent(int $id, array $data);
     public function deleteEvent(int $id);
+    public function registerUserToEvent(int $eventId, int $userId);
 }

@@ -42,7 +42,7 @@ class EventRepository
 
     public function findById(int $id)
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
 
@@ -68,5 +68,21 @@ class EventRepository
             return $event->delete();
         }
         return false;
+    }
+
+    public function registerUserToEvent(int $eventId, int $userId)
+    {
+        $event = $this->findById($eventId);
+
+        if (!$event) {
+            return null;
+        }
+
+        // Asumsikan ada relasi many-to-many
+        $event->users()->attach($userId, [
+            'participation_type' => $event->event_type,
+        ]);
+
+        return $event;
     }
 }
