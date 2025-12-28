@@ -35,31 +35,14 @@ class EventController extends Controller
 
     public function register(Request $request, Event $event)
     {
-        $user = $request->user();
+        $userId = auth()->id();
 
-        if ($event->status !== GeneralConstant::EVENT_STATUS_PUBLISHED) {
-            return back()->with('error', 'This event is not available for registration.');
+        try {
+            $this->eventService->registerUserToEvent($event->id, $userId);
+            return redirect()->back()->with('success', 'You have successfully registered for this event.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
-
-        if (!$event->isRegistrationOpen()) {
-            return back()->with('error', 'Registration for this event is closed.');
-        }
-
-        if ($event->registrations()->where('user_id', $user->id)->exists()) {
-            return back()->with('info', 'You are already registered for this event.');
-        }
-
-        // Simpan registration
-        EventRegistration::create([
-            'event_id' => $event->id,
-            'user_id' => $user->id,
-            'participation_type' => $event->event_type, // ONLINE / OFFLINE
-        ]);
-
-        // Redirect dengan pesan sukses
-        return redirect()
-            ->route('events.show', $event->slug)
-            ->with('success', 'You have successfully registered for this event.');
     }
 
     public function show(string $id)
