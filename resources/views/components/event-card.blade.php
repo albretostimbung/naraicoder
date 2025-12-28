@@ -14,21 +14,28 @@
     </div>
 
     <div class="p-6">
-        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
-            <span>📅 {{ $event->start_at->format('d M Y') }}</span>
-            <span>•</span>
-            <span>⏰ {{ $event->start_at->format('H:i') }} WIB</span>
+        <div class="flex items-center gap-3 text-sm text-gray-500 mb-3 leading-none">
+        <span class="inline-flex items-center gap-2">
+            <x-lucide-icon name="calendar" class="w-4 h-4 shrink-0 text-gray-400/80" />
+            <span>{{ $event->start_at->format('d M Y') }}</span>
+        </span>
+            <span class="text-gray-400/80 select-none">•</span>
+            <span class="inline-flex items-center gap-2">
+            <x-lucide-icon name="clock" class="w-4 h-4 shrink-0 text-gray-400/80" />
+            <span>{{ $event->start_at->format('H:i') }} WIB</span>
+        </span>
         </div>
-        <h3 class="font-bold text-xl mb-2">
+        <h3 class="font-bold text-xl mb-2 leading-snug">
             {{ $event->title }}
         </h3>
-        <p class="text-sm text-gray-600 mb-4">
+        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
             {{ Str::limit($event->description, 100, '...') }}
         </p>
         <span
-            class="inline-flex items-center text-blue-600 font-semibold hover:gap-3 gap-2 transition-all">
-            Lihat Detail
-            <span>→</span>
-        </span>
+            class="inline-flex items-center gap-2 text-blue-600 font-semibold
+               hover:gap-3 transition-all duration-200">
+        Lihat Detail
+        <span aria-hidden="true">→</span>
+    </span>
     </div>
 </a>
