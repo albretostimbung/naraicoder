@@ -3,11 +3,6 @@
         <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div>
                 <div class="flex items-center gap-3 mb-4">
-{{--                    <div--}}
-{{--                        class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">--}}
-{{--                        <span class="text-white font-bold text-xl">N</span>--}}
-{{--                    </div>--}}
-{{--                    <span class="font-bold text-lg text-white">NaraiCoder</span>--}}
                     <img src="{{ asset('assets/images/logo.png') }}" alt="NaraiCoder Logo" class="w-32">
                 </div>
                 <p class="text-sm">
@@ -18,15 +13,6 @@
             <div>
                 <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    {{--                    <a href="#" data-scroll="about" class="hover:text-blue-600 transition-colors">--}}
-                    {{--                        Tentang--}}
-                    {{--                    </a>--}}
-                    {{--                    <a href="#" data-scroll="events" class="hover:text-blue-600 transition-colors">--}}
-                    {{--                        Event--}}
-                    {{--                    </a>--}}
-                    {{--                    <a href="#" data-scroll="join" class="hover:text-blue-600 transition-colors">--}}
-                    {{--                        Gabung--}}
-                    {{--                    </a>--}}
                     <li>
                         <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors">
                             Beranda
@@ -53,9 +39,14 @@
             <div>
                 <h4 class="text-white font-semibold mb-4">Kontak</h4>
                 <ul class="space-y-2 text-sm">
-                    <li>📧 hello@naraicoder.id</li>
-                    <li>📱 +62 xxx xxxx xxxx</li>
-                    <li>📍 Palangka Raya, Kalteng</li>
+                    <li class="flex items-center gap-1">
+                        <x-lucide-icon name="mail" class="inline w-4 h-4"/>
+                        <span>info@naraicoder.org</span>
+                    </li>
+                    <li class="flex items-center gap-1">
+                        <x-lucide-icon name="pin" class="inline w-4 h-4"/>
+                        <span>Palangka Raya, Kalimantan Tengah</span>
+                    </li>
                 </ul>
             </div>
 
@@ -63,20 +54,16 @@
                 <h4 class="text-white font-semibold mb-4">Social Media</h4>
                 <div class="flex gap-3">
                     <a href="https://www.instagram.com/Naraicoder"
-                       class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition-colors">
-                        <span>ig</span>
-                    </a>
-                    <a href="https://t.me/naraicoder"
-                       class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-400 transition-colors">
-                        <span>t</span>
+                       class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:text-[#E1306C]/80 transition-colors">
+                        <x-lucide-icon name="instagram" class="w-5 h-5"/>
                     </a>
                     <a href="https://youtube.com/@naraicoder7273?si=8-eaeJF_oZoXNydY"
-                       class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
-                        <span>yt</span>
+                       class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:text-[#FF0000]/80 transition-colors">
+                        <x-lucide-icon name="youtube" class="w-5 h-5"/>
                     </a>
                     <a href="https://www.linkedin.com/company/naraicoder/"
-                       class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors">
-                        <span>in</span>
+                       class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:text-[#0A66C2]/80 transition-colors">
+                        <x-lucide-icon name="linkedin" class="w-5 h-5"/>
                     </a>
                 </div>
             </div>

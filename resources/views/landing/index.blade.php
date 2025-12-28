@@ -8,8 +8,10 @@
 
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
             <div data-aos="fade-right">
-                <div class="inline-block mb-4 px-4 py-2 bg-white/20 rounded-full text-sm backdrop-blur-sm">
-                    🚀 Komunitas IT Terbesar di Kalteng
+                <div
+                    class="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-white/20 rounded-full text-sm backdrop-blur-sm">
+                    <x-lucide-icon name="rocket" class="w-6 h-6 inline-block text-yellow-300"/>
+                    <span>Komunitas IT Terbesar di Kalteng</span>
                 </div>
                 <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
                     Wadah Pengembangan<br>
@@ -61,7 +63,9 @@
                     <div class="absolute -bottom-6 -left-6 bg-white text-gray-800 p-4 rounded-xl shadow-xl">
                         <div class="flex items-center gap-3">
                             <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                                <span class="text-white text-2xl">✓</span>
+                                <span class="inline-flex items-center gap-2 text-white text-2xl">
+                                    <x-lucide-icon name="check" class="w-6 h-6 inline-block"/>
+                                </span>
                             </div>
                             <div>
                                 <div class="font-bold">Event Active</div>
@@ -98,7 +102,9 @@
                      data-aos="flip-left" data-aos-delay="100">
                     <div
                         class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4 pulse-glow">
-                        <span class="text-3xl">📅</span>
+                        <span class="inline-flex items-center gap-2 text-3xl">
+                            <x-lucide-icon name="calendar" class="w-8 h-8 inline-block text-white"/>
+                        </span>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Event Berkualitas</h3>
                     <p class="text-sm text-gray-600">
@@ -110,7 +116,9 @@
                      data-aos="flip-left" data-aos-delay="200">
                     <div
                         class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 pulse-glow">
-                        <span class="text-3xl">👥</span>
+                        <span class="inline-flex items-center gap-2 text-3xl">
+                            <x-lucide-icon name="users" class="w-8 h-8 inline-block text-white"/>
+                        </span>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Komunitas Aktif</h3>
                     <p class="text-sm text-gray-600">
@@ -122,7 +130,9 @@
                      data-aos="flip-left" data-aos-delay="300">
                     <div
                         class="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center mx-auto mb-4 pulse-glow">
-                        <span class="text-3xl">🚀</span>
+                        <span class="inline-flex items-center gap-2 text-3xl">
+                            <x-lucide-icon name="rocket" class="w-8 h-8 inline-block text-white"/>
+                        </span>
                     </div>
                     <h3 class="font-bold text-xl mb-3">Pengembangan Karier</h3>
                     <p class="text-sm text-gray-600">
@@ -159,8 +169,10 @@
         <div class="relative z-10" data-aos="zoom-in">
             <div class="max-w-3xl mx-auto px-6">
                 @guest
-                    <div class="inline-block mb-6 px-6 py-2 bg-white/20 rounded-full text-sm backdrop-blur-sm">
-                        ✨ Bergabunglah Bersama 300+ Member
+                    <div
+                        class="inline-flex items-center gap-2 mb-6 px-6 py-2 bg-white/20 rounded-full text-sm backdrop-blur-sm">
+                        <x-lucide-icon name="sparkles" class="w-5 h-5 inline-block text-yellow-300"/>
+                        <span>Bergabunglah Bersama 300+ Member</span>
                     </div>
                     <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
                         Siap Bergabung dengan NaraiCoder?
@@ -170,39 +182,45 @@
                     </p>
 
                     <a href="{{ route('google.login') }}"
-                       class="inline-block bg-white text-blue-600 px-10 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg">
-                        <span class="mr-2">🚀</span> Daftar Sekarang
+                       class="inline-flex items-center gap-2 bg-white text-blue-600 px-10 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg">
+                        <x-lucide-icon name="rocket" class="w-6 h-6 inline-block"/>
+                        <span>Daftar Sekarang</span>
                     </a>
                 @else
-                    <h2>Selamat Datang Kembali 👋</h2>
+                    <div class="inline-flex items-center gap-2">
+                        <h2>Selamat Datang Kembali</h2>
+                        <x-lucide-icon name="hand" class="w-4 h-4 inline-block text-yellow-300"/>
+                    </div>
                     <p class="text-blue-100 mb-10">
                         Lihat event terbaru dan lanjutkan perjalanan belajarmu bersama komunitas.
                     </p>
 
                     <div class="flex justify-center gap-4">
                         <a href="#" data-scroll="events"
-                           class="bg-white text-blue-600 px-10 py-5 rounded-xl font-bold">
-                            🎫 Lihat Event
+                           class="inline-flex items-center gap-2 bg-white text-blue-600 px-10 py-5 rounded-xl font-bold">
+                            <x-lucide-icon name="ticket" class="w-6 h-6 inline-block"/>
+                            <span>Lihat Event</span>
                         </a>
 
                         <a href="{{ route('my-events.index') }}"
-                           class="border-2 border-white px-10 py-5 rounded-xl font-bold">
-                            📌 Event Saya
+                           class="inline-flex items-center gap-2 border-2 border-white px-10 py-5 rounded-xl font-bold">
+                            <x-lucide-icon name="pin" class="w-6 h-6 inline-block"/>
+                            <span>Event Saya</span>
                         </a>
                     </div>
                 @endguest
 
                 <div class="flex justify-center gap-8 mt-12">
                     <div class="text-center">
-                        <div class="text-3xl mb-2">💯</div>
+                        <x-lucide-icon name="badge-percent" class="w-8 h-8 inline-block text-blue-200/80 mb-2"/>
                         <div class="text-sm text-blue-200">Gratis Selamanya</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl mb-2">🎓</div>
+                        <x-lucide-icon name="graduation-cap" class="w-8 h-8 inline-block text-blue-200/80 mb-2"/>
                         <div class="text-sm text-blue-200">Learning Path</div>
                     </div>
                     <div class="text-center">
-                        <div class="text-3xl mb-2">🤝</div>
+                        <x-lucide-icon name="handshake" class="w-8 h-8 inline-block text-blue-200/80 mb-2"/>
                         <div class="text-sm text-blue-200">Networking</div>
                     </div>
                 </div>
